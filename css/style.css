@@ -1,0 +1,16 @@
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: "Courier New", Courier, monospace;
+    background: linear-gradient(180deg, #4799e6 0%, #549adb  100%);
+    color: #f3f4ff;
+    image-rendering: crisp-edges;
+}
+.caixa {
+  width: 200px;
+  height: 100px;
+  background-color: lightblue;
+  border: 2px solid black;
+  padding: 10px;
+}
