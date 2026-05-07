@@ -1,24 +1,20 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JumperGames</title>
-       <link rel="stylesheet" href="./css/style.css">
+<meta charset="UTF-8">
+<title>JumperGames</title>
+<link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-     <main class="page">
-        <div class="container">
-            <header class="hero">
-                <h1>JumperGames</h1> 
-                   <img src="./image2.png" alt="logo" width="200" style="display: block; margin: 0 auto;" />
-               <select class="card">
-                    <h1>Jokem</h1>
-                </select>
-            </header>
-    
-    
-        
-    <script src="./js/script.js"></script>
+
+<div class="games">
+    <div class="card" onclick="abrirJogo('jokenpo')">✂️ Jokenpô</div>
+    <div class="card" onclick="abrirJogo('dados')">🎲 Dados</div>
+    <div class="card" onclick="abrirJogo('moeda')">🪙 Moeda</div>
+</div>
+
+<div id="areaJogo"></div>
+
+<script src="./js/script.js"></script>
 </body>
 </html>

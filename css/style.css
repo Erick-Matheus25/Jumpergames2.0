@@ -1,16 +1,117 @@
+ body {
+        font-family: 'VT323', monospace;
+    color: #000000;
+    text-align: center;
 
-body {
+    background: url('../fundoJumper.png') ;
+    background-size: cover;
+    background-repeat: no-repeat;
     margin: 0;
-    min-height: 100vh;
-    font-family: "Courier New", Courier, monospace;
-    background: linear-gradient(180deg, #4799e6 0%, #549adb  100%);
-    color: #f3f4ff;
-    image-rendering: crisp-edges;
+    padding: 0;
 }
-.caixa {
-  width: 200px;
-  height: 100px;
-  background-color: lightblue;
-  border: 2px solid black;
-  padding: 10px;
+.games {
+    display: flex;
+    justify-content: center;
+    gap: 200px;
+    margin-top: 300px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background: rgba(0,0,0,0.4);
+    border: 1px solid rgba(0,255,204,0.25);
+    backdrop-filter: blur(6px);
+
+    padding: 25px;
+    border-radius: 20px;
+    width: 220px;
+
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 25px #00ffcc;
+}
+
+
+
+.img-btn {
+    width: 100px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.img-btn:hover {
+    transform: scale(1.2);
+}
+
+
+#areaJogo {
+    margin-top: 30px;
+}
+
+
+#resultado {
+    margin-top: 20px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #ffe600;
+}
+
+
+
+#escolhas {
+    margin-top: 25px;
+}
+
+#escolhas p {
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+
+
+#placar {
+    margin-top: 25px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #00ffcc;
+
+    text-shadow: 0 0 10px #00ffcc;
+}
+
+
+
+button {
+    background: #00ffcc;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 10px;
+
+    font-size: 18px;
+    font-weight: bold;
+
+    cursor: pointer;
+    transition: 0.3s;
+
+    margin: 10px;
+}
+
+button:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 15px #00ffcc;
+}
+
+
+
+#dado1,
+#dado2,
+#resultadoDados,
+#resultadoMoeda {
+    font-size: 24px;
+    margin-top: 15px;
+    font-weight: bold;
 }
