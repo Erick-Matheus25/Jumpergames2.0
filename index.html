@@ -1,20 +1,61 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<title>JumperGames</title>
-<link rel="stylesheet" href="./css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>JumperGames</title>
+  <link rel="stylesheet" href="./css/style.css" />
 </head>
 <body>
 
-<div class="games">
-    <div class="card" onclick="abrirJogo('jokenpo')">✂️ Jokenpô</div>
-    <div class="card" onclick="abrirJogo('dados')">🎲 Dados</div>
-    <div class="card" onclick="abrirJogo('moeda')">🪙 Moeda</div>
-</div>
+  <div class="bg-wrap" aria-hidden="true">
+    <img src="./fundojumper.png" alt="" class="bg-img" />
+  </div>
 
-<div id="areaJogo"></div>
+  <div class="content">
 
-<script src="./js/script.js"></script>
+    <!-- Letreiro animado -->
+    <header class="marquee-wrap" aria-hidden="false">
+      <div class="marquee" id="marquee" tabindex="0" role="region" aria-label="Letreiro JumperGames">
+        <span class="marquee-text" id="marqueeText">JumperGames</span>
+       
+      </div>
+    </header>
+
+    <div class="games" role="navigation" aria-label="Menu de jogos">
+      <div class="card" onclick="abrirJogo('jokenpo')" tabindex="0" role="button" aria-pressed="false">
+        <div class="icon" aria-hidden="true">✂️</div>
+        <span>Jokenpô</span>
+      </div>
+
+      <div class="card" onclick="abrirJogo('dados')" tabindex="0" role="button" aria-pressed="false">
+        <div class="icon" aria-hidden="true">🎲</div>
+        <span>Dados</span>
+      </div>
+
+      <div class="card" onclick="abrirJogo('moeda')" tabindex="0" role="button" aria-pressed="false">
+        <div class="icon" aria-hidden="true">🪙</div>
+        <span>Moeda</span>
+      </div>
+    </div>
+
+    <div id="areaJogo" aria-live="polite"></div>
+  </div>
+
+  <script src="./js/script.js"></script>
+  <script>
+   
+    (function() {
+      const cards = document.querySelectorAll('.card');
+      cards.forEach(card => {
+        card.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            card.click();
+          }
+        });
+      });
+    })();
+  </script>
 </body>
 </html>

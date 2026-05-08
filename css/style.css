@@ -1,117 +1,425 @@
- body {
-        font-family: 'VT323', monospace;
-    color: #000000;
-    text-align: center;
 
-    background: url('../fundoJumper.png') ;
-    background-size: cover;
-    background-repeat: no-repeat;
-    margin: 0;
-    padding: 0;
-}
-.games {
-    display: flex;
-    justify-content: center;
-    gap: 200px;
-    margin-top: 300px;
-    flex-wrap: wrap;
-}
+:root{
+  --accent:#00ffcc;
+  --accent-2:#00d1b3;
 
-.card {
-    background: rgba(0,0,0,0.4);
-    border: 1px solid rgba(0,255,204,0.25);
-    backdrop-filter: blur(6px);
+  --bg-fallback:#1a0f2e;
 
-    padding: 25px;
-    border-radius: 20px;
-    width: 220px;
+  --card-bg:rgba(10,10,12,0.45);
+  --card-border:rgba(0,255,204,0.12);
 
-    cursor: pointer;
-    transition: 0.3s;
+  --glass-blur:6px;
+
+  --shadow-strong:0 18px 40px rgba(0,208,180,0.12);
+  --shadow-soft:0 6px 16px rgba(0,0,0,0.35);
+
+  --radius:12px;
 }
 
-.card:hover {
-    transform: scale(1.08);
-    box-shadow: 0 0 25px #00ffcc;
+/* RESET */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
-
-
-.img-btn {
-    width: 100px;
-    cursor: pointer;
-    transition: 0.3s;
+html,
+body{
+  width:100%;
+  min-height:100%;
+  overflow-x:hidden;
 }
 
-.img-btn:hover {
-    transform: scale(1.2);
+/* BODY */
+
+body{
+  font-family:'Inter',system-ui,'Segoe UI',Roboto,'VT323',monospace;
+
+  color:#fff;
+  text-align:center;
+
+  background-color:var(--bg-fallback);
+
+  display:flex;
+  justify-content:flex-start;
 }
 
+/* BACKGROUND */
 
-#areaJogo {
-    margin-top: 30px;
+.bg-wrap{
+  position:fixed;
+  inset:0;
+
+  z-index:0;
+
+  background:#120a20;
 }
 
+.bg-img{
+  position:absolute;
+  inset:0;
 
-#resultado {
-    margin-top: 20px;
-    font-size: 30px;
-    font-weight: bold;
-    color: #ffe600;
+  width:100%;
+  height:100%;
+
+  object-fit:cover;
+
+  image-rendering:pixelated;
+
+  pointer-events:none;
+  user-select:none;
 }
 
+/* CONTEÚDO */
 
+.content{
+  position:relative;
+  z-index:2;
 
-#escolhas {
-    margin-top: 25px;
+  width:100%;
+
+  padding-top:0;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
 }
 
-#escolhas p {
-    color: white;
-    font-size: 22px;
-    font-weight: bold;
+/* LETREIRO */
+
+.marquee-wrap{
+  width:100%;
+
+  display:flex;
+  justify-content:center;
+
+  margin:0 0 8px;
+
+  position:relative;
+  z-index:3;
 }
 
+.marquee{
+  width:min(1200px,95%);
 
+  overflow:hidden;
 
-#placar {
-    margin-top: 25px;
-    font-size: 24px;
-    font-weight: bold;
-    color: #00ffcc;
+  border-radius:12px;
 
-    text-shadow: 0 0 10px #00ffcc;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0,0,0,0.35),
+      rgba(0,0,0,0.18)
+    );
+
+  border:1px solid rgba(0,255,204,0.08);
+
+  box-shadow:
+    0 6px 20px rgba(0,0,0,0.45);
 }
 
+.marquee-text{
+  display:inline-block;
 
+  white-space:nowrap;
 
-button {
-    background: #00ffcc;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 10px;
+  padding:10px 18px;
 
-    font-size: 18px;
-    font-weight: bold;
+  color:var(--accent);
 
-    cursor: pointer;
-    transition: 0.3s;
+  font-size:20px;
+  font-weight:700;
 
-    margin: 10px;
+  font-family:'VT323',monospace;
+
+  animation:marqueeScroll 18s linear infinite;
 }
 
-button:hover {
-    transform: scale(1.08);
-    box-shadow: 0 0 15px #00ffcc;
+@keyframes marqueeScroll{
+
+  from{
+    transform:translateX(100%);
+  }
+
+  to{
+    transform:translateX(-100%);
+  }
 }
 
+/* GAMES */
 
+.games{
+  display:flex;
 
-#dado1,
-#dado2,
-#resultadoDados,
-#resultadoMoeda {
-    font-size: 24px;
-    margin-top: 15px;
-    font-weight: bold;
+  justify-content:center;
+  align-items:center;
+
+  flex-wrap:wrap;
+
+  gap:14px;
+
+  width:100%;
+  max-width:900px;
+
+  margin-top:8px;
+}
+
+/* CARDS */
+
+.card{
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  gap:8px;
+
+  width:170px;
+  min-height:52px;
+
+  padding:12px 14px;
+
+  border-radius:12px;
+
+  background:var(--card-bg);
+
+  border:1px solid var(--card-border);
+
+  backdrop-filter:blur(var(--glass-blur));
+
+  box-shadow:var(--shadow-soft);
+
+  color:#fff;
+
+  font-size:15px;
+  font-weight:600;
+
+  cursor:pointer;
+
+  transition:
+    transform .18s,
+    border-color .18s,
+    box-shadow .18s;
+}
+
+.card:hover{
+  transform:translateY(-3px);
+
+  border-color:var(--accent);
+
+  box-shadow:var(--shadow-strong);
+}
+
+.card .icon{
+  width:28px;
+  height:28px;
+
+  display:grid;
+  place-items:center;
+
+  border-radius:8px;
+
+  background:rgba(255,255,255,0.05);
+
+  border:1px solid rgba(255,255,255,0.04);
+
+  font-size:15px;
+}
+
+/* ÁREA DO JOGO */
+
+#areaJogo,
+.game-box{
+
+  width:min(430px,92%);
+
+  margin-top:10px;
+
+  padding:12px;
+
+  border-radius:14px;
+
+  background:rgba(15,5,20,0.55);
+
+  border:1px solid rgba(0,255,204,0.12);
+
+  backdrop-filter:blur(6px);
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.45);
+
+  color:#fff;
+}
+
+#areaJogo h2,
+.game-box h2{
+
+  font-family:'VT323',monospace;
+
+  font-size:22px;
+
+  margin-bottom:14px;
+
+  color:#fff;
+}
+
+/* BOTÕES COM IMAGEM */
+
+.img-btn{
+
+  width:70px;
+
+  border-radius:10px;
+
+  padding:5px;
+
+  background:rgba(255,255,255,0.04);
+
+  border:1px solid rgba(255,255,255,0.06);
+
+  cursor:pointer;
+
+  transition:
+    transform .18s,
+    box-shadow .18s;
+}
+
+.img-btn:hover{
+  transform:scale(1.05);
+
+  box-shadow:
+    0 6px 18px rgba(0,0,0,0.4);
+}
+
+/* RESULTADO */
+
+#resultado{
+
+  margin-top:12px;
+
+  font-size:20px;
+  font-weight:700;
+
+  color:#ffe600;
+
+  text-shadow:
+    0 0 8px #ffe600;
+}
+
+/* PLACAR */
+
+#placar{
+
+  margin-top:10px;
+
+  font-size:16px;
+  font-weight:700;
+
+  color:var(--accent);
+}
+
+/* BOTÕES */
+
+button{
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--accent),
+      var(--accent-2)
+    );
+
+  color:#001;
+
+  border:none;
+
+  padding:10px 18px;
+
+  border-radius:10px;
+
+  font-weight:700;
+
+  cursor:pointer;
+
+  transition:
+    transform .18s,
+    filter .18s,
+    box-shadow .18s;
+
+  box-shadow:
+    0 6px 18px rgba(0,208,180,0.14);
+}
+
+button:hover{
+
+  transform:translateY(-2px);
+
+  filter:brightness(1.05);
+
+  box-shadow:
+    0 10px 24px rgba(0,208,180,0.18);
+}
+
+/* RESPONSIVO */
+
+@media(max-width:768px){
+
+  .games{
+    gap:10px;
+  }
+
+  .card{
+    width:140px;
+    min-height:48px;
+
+    font-size:14px;
+  }
+
+  .card .icon{
+    width:24px;
+    height:24px;
+
+    font-size:13px;
+  }
+
+  #areaJogo,
+  .game-box{
+    width:95%;
+    padding:12px;
+  }
+
+  .img-btn{
+    width:58px;
+  }
+
+  #resultado{
+    font-size:18px;
+  }
+
+  #placar{
+    font-size:14px;
+  }
+}
+
+@media(max-width:480px){
+
+  .games{
+    flex-direction:column;
+  }
+
+  .card{
+    width:92%;
+    max-width:250px;
+  }
+
+  .marquee-text{
+    font-size:16px;
+  }
+
+  #areaJogo h2,
+  .game-box h2{
+    font-size:20px;
+  }
 }
