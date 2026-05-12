@@ -57,13 +57,13 @@ O objetivo é aplicar conceitos de lógica de programação e manipulação do D
 ## 📸 Demonstração Visual
 
 ### Jokenpô
-![Demo Jokenpô](https://raw.githubusercontent.com/Erick-Matheus25/TrabalhoJumperGames/main/assets/demo-jokenpo.jpg)
+![Demo Jokenpô](demostração.Jokenpô.png)
 
 ### Batalha de Dados
-![Demo Dados](https://raw.githubusercontent.com/Erick-Matheus25/TrabalhoJumperGames/main/assets/demo-dados.jpg)
+![Demo Dados](demostração.dado.png)
 
 ### Cara ou Coroa
-![Demo Moeda](https://raw.githubusercontent.com/Erick-Matheus25/TrabalhoJumperGames/main/assets/demo-moeda.jpg)
+![Demo Moeda](demostração.coroa.png)
 
 
 
