@@ -1,3 +1,4 @@
+
 # 🎮 Arcade JS | Mini Games em JavaScript
 
 **Colégio ULBRA São Lucas - Curso Técnico em Informática**  
@@ -53,18 +54,19 @@ O objetivo é aplicar conceitos de lógica de programação e manipulação do D
 
 ## 📸 Demonstração Visual
 
+## 📸 Demonstração Visual
+
 ### Jokenpô
-![Demo Jokenpô](C:\Websites\TrabalhoJumperGames\Opera Instantâneo_2026-05-11_215447_127.0.0.1.png)
+![Demo Jokenpô](https://raw.githubusercontent.com/Erick-Matheus25/TrabalhoJumperGames/main/assets/demo-jokenpo.jpg)
 
 ### Batalha de Dados
-![Demo Dados](C:\Websites\TrabalhoJumperGames\Opera Instantâneo_2026-05-11_212731_127.0.0.1.png)
+![Demo Dados](https://raw.githubusercontent.com/Erick-Matheus25/TrabalhoJumperGames/main/assets/demo-dados.jpg)
 
 ### Cara ou Coroa
-![Demo Moeda](C:\Websites\TrabalhoJumperGames\Opera Instantâneo_2026-05-11_215244_127.0.0.1.png)
+![Demo Moeda](https://raw.githubusercontent.com/Erick-Matheus25/TrabalhoJumperGames/main/assets/demo-moeda.jpg)
 
-> **Dica:** Use ferramentas como *ScreenToGif* (Windows), *Kap* (Mac) ou sites como *ezgif.com* para gravar e converter em GIF.
 
----
+
 
 ## ⚙️ Como executar o projeto localmente
 1. Clone este repositório:
