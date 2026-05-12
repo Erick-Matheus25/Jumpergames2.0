@@ -50,9 +50,6 @@ O objetivo é aplicar conceitos de lógica de programação e manipulação do D
 2. O computador sorteia o resultado.  
 3. O resultado aparece com animação e o placar é atualizado.  
 
----
-
-## 📸 Demonstração Visual
 
 ## 📸 Demonstração Visual
 
