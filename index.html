@@ -1,61 +1,167 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <meta name="viewport"
+        content="width=device-width,initial-scale=1" />
+
   <title>JumperGames</title>
-  <link rel="stylesheet" href="./css/style.css" />
+
+  <link rel="stylesheet"
+        href="./css/style.css" />
 </head>
+
 <body>
 
+  <!-- FUNDO -->
+
   <div class="bg-wrap" aria-hidden="true">
-    <img src="./fundojumper.png" alt="" class="bg-img" />
+
+    <img
+      src="./fundojumper.png"
+      alt=""
+      class="bg-img" />
+
   </div>
+
+
+  <!-- CONTEÚDO -->
 
   <div class="content">
 
-    <!-- Letreiro animado -->
-    <header class="marquee-wrap" aria-hidden="false">
-      <div class="marquee" id="marquee" tabindex="0" role="region" aria-label="Letreiro JumperGames">
-        <span class="marquee-text" id="marqueeText">JumperGames</span>
-       
+
+    <!-- LETREIRO -->
+
+    <header class="marquee-wrap">
+
+      <div
+        class="marquee"
+        id="marquee">
+
+        <span
+          class="marquee-text"
+          id="marqueeText">
+
+          JumperGames
+
+        </span>
+
       </div>
+
     </header>
 
-    <div class="games" role="navigation" aria-label="Menu de jogos">
-      <div class="card" onclick="abrirJogo('jokenpo')" tabindex="0" role="button" aria-pressed="false">
-        <div class="icon" aria-hidden="true">✂️</div>
+
+    <!-- MENU -->
+
+    <div
+      class="games"
+      role="navigation"
+      aria-label="Menu de jogos">
+
+
+      <!-- JOKENPÔ -->
+
+      <div
+        class="card"
+        onclick="abrirJogo('jokenpo')"
+        tabindex="0">
+
+        <div class="icon">✂️</div>
+
         <span>Jokenpô</span>
+
       </div>
 
-      <div class="card" onclick="abrirJogo('dados')" tabindex="0" role="button" aria-pressed="false">
-        <div class="icon" aria-hidden="true">🎲</div>
+
+      <!-- DADOS -->
+
+      <div
+        class="card"
+        onclick="abrirJogo('dados')"
+        tabindex="0">
+
+        <div class="icon">🎲</div>
+
         <span>Dados</span>
+
       </div>
 
-      <div class="card" onclick="abrirJogo('moeda')" tabindex="0" role="button" aria-pressed="false">
-        <div class="icon" aria-hidden="true">🪙</div>
+
+      <!-- MOEDA -->
+
+      <div
+        class="card"
+        onclick="abrirJogo('moeda')"
+        tabindex="0">
+
+        <div class="icon">🪙</div>
+
         <span>Moeda</span>
+
       </div>
+
     </div>
 
-    <div id="areaJogo" aria-live="polite"></div>
+
+    <!-- ÁREA DOS JOGOS -->
+
+    <div id="areaJogo"></div>
+
   </div>
 
+
+  <!-- GAME OVER -->
+
+  <div id="gameOverTela">
+
+    <img
+      src="./gameover.png"
+      alt="Game Over">
+
+  </div>
+
+  <div id="victoryTela">
+  <img src="./victory.png" alt="Victory">
+</div>
+
+  <!-- SCRIPT -->
+
   <script src="./js/script.js"></script>
+
+
+  <!-- ENTER E ESPAÇO -->
+
   <script>
-   
-    (function() {
-      const cards = document.querySelectorAll('.card');
+
+    (function () {
+
+      const cards =
+        document.querySelectorAll('.card');
+
       cards.forEach(card => {
+
         card.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
+
+          if (
+            e.key === 'Enter' ||
+            e.key === ' '
+          ) {
+
             e.preventDefault();
+
             card.click();
+
           }
+
         });
+
       });
+
     })();
+
   </script>
+
 </body>
 </html>
