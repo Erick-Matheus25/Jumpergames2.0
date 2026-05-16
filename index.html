@@ -2,166 +2,136 @@
 <html lang="pt-br">
 
 <head>
-  <meta charset="UTF-8" />
 
-  <meta name="viewport"
-        content="width=device-width,initial-scale=1" />
+  <meta charset="UTF-8">
 
-  <title>JumperGames</title>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet"
-        href="./css/style.css" />
+  <title>JumperGames 2.0</title>
+
+  <link
+    rel="stylesheet"
+    href="./css/style.css">
+
 </head>
 
 <body>
 
   <!-- FUNDO -->
 
-  <div class="bg-wrap" aria-hidden="true">
+  <div class="bg-wrap">
 
     <img
       src="./fundojumper.png"
-      alt=""
-      class="bg-img" />
+      class="bg-img">
 
   </div>
 
+  <!-- GRID -->
+
+  <div class="grid-bg"></div>
 
   <!-- CONTEÚDO -->
 
   <div class="content">
 
+    <div class="top-title">
 
-    <!-- LETREIRO -->
+      SELECT YOUR GAME
 
-    <header class="marquee-wrap">
-
-      <div
-        class="marquee"
-        id="marquee">
-
-        <span
-          class="marquee-text"
-          id="marqueeText">
-
-          JumperGames
-
-        </span>
-
-      </div>
-
-    </header>
-
+    </div>
 
     <!-- MENU -->
 
-    <div
-      class="games"
-      role="navigation"
-      aria-label="Menu de jogos">
+    <div class="games">
 
-
-      <!-- JOKENPÔ -->
+      <!-- JOKENPO -->
 
       <div
-        class="card"
-        onclick="abrirJogo('jokenpo')"
-        tabindex="0">
+        class="game-card"
+        onclick="abrirJogo('jokenpo')">
 
-        <div class="icon">✂️</div>
+        <div class="game-title-box">
 
-        <span>Jokenpô</span>
+          JOKENPÔ
+
+        </div>
+
+        <button class="play-btn">
+
+          PLAY GAME
+
+        </button>
 
       </div>
-
 
       <!-- DADOS -->
 
       <div
-        class="card"
-        onclick="abrirJogo('dados')"
-        tabindex="0">
+        class="game-card"
+        onclick="abrirJogo('dados')">
 
-        <div class="icon">🎲</div>
+        <div class="game-title-box">
 
-        <span>Dados</span>
+          DADOS
+
+        </div>
+
+        <button class="play-btn">
+
+          PLAY GAME
+
+        </button>
 
       </div>
-
 
       <!-- MOEDA -->
 
       <div
-        class="card"
-        onclick="abrirJogo('moeda')"
-        tabindex="0">
+        class="game-card"
+        onclick="abrirJogo('moeda')">
 
-        <div class="icon">🪙</div>
+        <div class="game-title-box">
 
-        <span>Moeda</span>
+          CARA OU COROA
+
+        </div>
+
+        <button class="play-btn">
+
+          PLAY GAME
+
+        </button>
 
       </div>
 
     </div>
 
-
-    <!-- ÁREA DOS JOGOS -->
+    <!-- ÁREA -->
 
     <div id="areaJogo"></div>
 
   </div>
 
-
   <!-- GAME OVER -->
 
   <div id="gameOverTela">
 
-    <img
-      src="./gameover.png"
-      alt="Game Over">
+    <img src="./gameover.png">
 
   </div>
 
-  <div id="victoryTela">
-  <img src="./victory.png" alt="Victory">
-</div>
+  <!-- VICTORY -->
 
-  <!-- SCRIPT -->
+  <div id="victoryTela">
+
+    <img src="./victory.png">
+
+  </div>
 
   <script src="./js/script.js"></script>
-
-
-  <!-- ENTER E ESPAÇO -->
-
-  <script>
-
-    (function () {
-
-      const cards =
-        document.querySelectorAll('.card');
-
-      cards.forEach(card => {
-
-        card.addEventListener('keydown', (e) => {
-
-          if (
-            e.key === 'Enter' ||
-            e.key === ' '
-          ) {
-
-            e.preventDefault();
-
-            card.click();
-
-          }
-
-        });
-
-      });
-
-    })();
-
-  </script>
 
 </body>
 </html>
