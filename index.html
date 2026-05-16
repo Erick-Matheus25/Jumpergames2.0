@@ -5,130 +5,67 @@
 
   <meta charset="UTF-8">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>JumperGames 2.0</title>
 
-  <link
-    rel="stylesheet"
-    href="./css/style.css">
+  <link rel="stylesheet" href="./css/style.css">
 
 </head>
 
 <body>
 
   <!-- FUNDO -->
-
   <div class="bg-wrap">
-
-    <img
-      src="./fundojumper.png"
-      class="bg-img">
-
+    <img src="./fundojumper.png" class="bg-img" alt="fundo">
   </div>
 
   <!-- GRID -->
-
   <div class="grid-bg"></div>
 
   <!-- CONTEÚDO -->
-
   <div class="content">
 
     <div class="top-title">
-
       SELECT YOUR GAME
-
     </div>
 
     <!-- MENU -->
-
     <div class="games">
 
       <!-- JOKENPO -->
-
-      <div
-        class="game-card"
-        onclick="abrirJogo('jokenpo')">
-
-        <div class="game-title-box">
-
-          JOKENPÔ
-
-        </div>
-
-        <button class="play-btn">
-
-          PLAY GAME
-
-        </button>
-
+      <div class="game-card" onclick="abrirJogo('jokenpo')">
+        <div class="game-title-box">JOKENPÔ</div>
+        <button class="play-btn">PLAY GAME</button>
       </div>
 
       <!-- DADOS -->
-
-      <div
-        class="game-card"
-        onclick="abrirJogo('dados')">
-
-        <div class="game-title-box">
-
-          DADOS
-
-        </div>
-
-        <button class="play-btn">
-
-          PLAY GAME
-
-        </button>
-
+      <div class="game-card" onclick="abrirJogo('dados')">
+        <div class="game-title-box">DADOS</div>
+        <button class="play-btn">PLAY GAME</button>
       </div>
 
       <!-- MOEDA -->
-
-      <div
-        class="game-card"
-        onclick="abrirJogo('moeda')">
-
-        <div class="game-title-box">
-
-          CARA OU COROA
-
-        </div>
-
-        <button class="play-btn">
-
-          PLAY GAME
-
-        </button>
-
+      <div class="game-card" onclick="abrirJogo('moeda')">
+        <div class="game-title-box">CARA OU COROA</div>
+        <button class="play-btn">PLAY GAME</button>
       </div>
 
     </div>
 
-    <!-- ÁREA -->
-
+    <!-- ÁREA JOGO -->
     <div id="areaJogo"></div>
 
   </div>
 
   <!-- GAME OVER -->
-
   <div id="gameOverTela">
-
-    <img src="./gameover.png">
-
+    <img src="./gameover.png" alt="game over">
   </div>
 
   <!-- VICTORY -->
-
   <div id="victoryTela">
-
-    <img src="./victory.png">
-
+    <img src="./victory.png" alt="victory">
   </div>
 
   <script src="./js/script.js"></script>
