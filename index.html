@@ -1,27 +1,137 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-<meta charset="UTF-8">
-<title>JumperGames</title>
-<link rel="stylesheet" href="./css/style.css">
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+  <title>JumperGames 2.0</title>
+
+  <link
+    rel="stylesheet"
+    href="./css/style.css">
+
 </head>
+
 <body>
 
-<header class="topo">
-    <img src="./imagem2.png" class="logo">
-    <h1>JumperGames</h1>
-</header>
+  <!-- FUNDO -->
 
-<p class="subtitulo">Escolha seu jogo 👇</p>
+  <div class="bg-wrap">
 
-<div class="games">
-    <div class="card" onclick="abrirJogo('jokenpo')">✂️ Jokenpô</div>
-    <div class="card" onclick="abrirJogo('dados')">🎲 Dados</div>
-    <div class="card" onclick="abrirJogo('moeda')">🪙 Moeda</div>
-</div>
+    <img
+      src="./fundojumper.png"
+      class="bg-img">
 
-<div id="areaJogo"></div>
+  </div>
 
-<script src="./js/script.js"></script>
+  <!-- GRID -->
+
+  <div class="grid-bg"></div>
+
+  <!-- CONTEÚDO -->
+
+  <div class="content">
+
+    <div class="top-title">
+
+      SELECT YOUR GAME
+
+    </div>
+
+    <!-- MENU -->
+
+    <div class="games">
+
+      <!-- JOKENPO -->
+
+      <div
+        class="game-card"
+        onclick="abrirJogo('jokenpo')">
+
+        <div class="game-title-box">
+
+          JOKENPÔ
+
+        </div>
+
+        <button class="play-btn">
+
+          PLAY GAME
+
+        </button>
+
+      </div>
+
+      <!-- DADOS -->
+
+      <div
+        class="game-card"
+        onclick="abrirJogo('dados')">
+
+        <div class="game-title-box">
+
+          DADOS
+
+        </div>
+
+        <button class="play-btn">
+
+          PLAY GAME
+
+        </button>
+
+      </div>
+
+      <!-- MOEDA -->
+
+      <div
+        class="game-card"
+        onclick="abrirJogo('moeda')">
+
+        <div class="game-title-box">
+
+          CARA OU COROA
+
+        </div>
+
+        <button class="play-btn">
+
+          PLAY GAME
+
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- ÁREA -->
+
+    <div id="areaJogo"></div>
+
+  </div>
+
+  <!-- GAME OVER -->
+
+  <div id="gameOverTela">
+
+    <img src="./gameover.png">
+
+  </div>
+
+  <!-- VICTORY -->
+
+  <div id="victoryTela">
+
+    <img src="./victory.png">
+
+  </div>
+
+  <script src="./js/script.js"></script>
+
 </body>
 </html>

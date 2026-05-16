@@ -1,111 +1,494 @@
-const opcoes = ['Pedra', 'Papel', 'Tesoura'];
+let vidas = 3;
 
-const imagens = {
-    Pedra: "./pedra.png",
-    Papel: "./papel.png",
-    Tesoura: "./tesoura.png"
-};
+/* =========================
+   IMAGENS
+========================= */
 
-let v = 0, d = 0, e = 0;
+const coracaoCheio =
+  "./coracaoCheio.png";
 
-function abrirJogo(jogo) {
-    let area = document.getElementById("areaJogo");
+const coracaoMorto =
+  "./coracaoMorto.png";
 
-    if (jogo === "jokenpo") {
-        area.innerHTML = `
-            <h2>Jokenpô</h2>
+/* =========================
+   ABRIR JOGOS
+========================= */
 
-            <div>
-                <img src="./pedra.png" onclick="jogar('Pedra')" class="img-btn">
-                <img src="./papel.png" onclick="jogar('Papel')" class="img-btn">
-                <img src="./tesoura.png" onclick="jogar('Tesoura')" class="img-btn">
-            </div>
+function abrirJogo(jogo){
 
-            <div id="resultado"></div>
-            <div id="escolhas"></div>
+  const area =
+    document.getElementById(
+      "areaJogo"
+    );
 
-            <p id="placar">Vitórias: 0 | Derrotas: 0 | Empates: 0</p>
-        `;
-    }
+  vidas = 3;
 
-    if (jogo === "dados") {
-        area.innerHTML = `
-            <h2>Batalha de Dados</h2>
-            <button onclick="rolarDados()">🎲 Lançar</button>
-            <p id="dado1"></p>
-            <p id="dado2"></p>
-            <p id="resultadoDados"></p>
-        `;
-    }
+  /* =========================
+     JOKENPO
+  ========================= */
 
-    if (jogo === "moeda") {
-        area.innerHTML = `
-            <h2>Cara ou Coroa</h2>
-            <button onclick="jogarMoeda('Cara')">Cara</button>
-            <button onclick="jogarMoeda('Coroa')">Coroa</button>
-            <p id="resultadoMoeda"></p>
-        `;
-    }
-}
+  if(jogo === "jokenpo"){
 
-function jogar(escolha) {
-    let pc = opcoes[Math.floor(Math.random() * 3)];
-    let res = "";
+    area.innerHTML = `
 
-    if (escolha === pc) {
-        res = "Empate!";
-        e++;
-    } else if (
-        (escolha === "Pedra" && pc === "Tesoura") ||
-        (escolha === "Papel" && pc === "Pedra") ||
-        (escolha === "Tesoura" && pc === "Papel")
-    ) {
-        res = "Você venceu!";
-        v++;
-    } else {
-        res = "Você perdeu!";
-        d++;
-    }
+      <h2>Jokenpô</h2>
 
-    document.getElementById("resultado").innerHTML = `<strong>${res}</strong>`;
+      <div id="vidasBox">
 
-    document.getElementById("escolhas").innerHTML = `
-        <div style="display:flex; justify-content:center; gap:50px;">
-            <div>
-                <p>Você</p>
-                <img src="${imagens[escolha]}" width="100">
-                <p>${escolha}</p>
-            </div>
-            <div>
-                <p>PC</p>
-                <img src="${imagens[pc]}" width="100">
-                <p>${pc}</p>
-            </div>
-        </div>
+        ${mostrarVidas()}
+
+      </div>
+
+      <div class="opcoes">
+
+        <img
+          src="./pedrajumper.png"
+          class="img-btn"
+          onclick="jogarJokenpo('Pedra')">
+
+        <img
+          src="./papeljumper.png"
+          class="img-btn"
+          onclick="jogarJokenpo('Papel')">
+
+        <img
+          src="./tesourajumper.png"
+          class="img-btn"
+          onclick="jogarJokenpo('Tesoura')">
+
+      </div>
+
+      <div id="resultado"></div>
+
     `;
 
-    document.getElementById("placar").innerText =
-        `Vitórias: ${v} | Derrotas: ${d} | Empates: ${e}`;
+  }
+
+  /* =========================
+     DADOS
+  ========================= */
+
+  else if(jogo === "dados"){
+
+    area.innerHTML = `
+
+      <h2>Batalha de Dados</h2>
+
+      <div id="vidasBox">
+
+        ${mostrarVidas()}
+
+      </div>
+
+      <button onclick="jogarDado()">
+
+        🎲 ROLAR DADO
+
+      </button>
+
+      <br><br>
+
+      <img
+        id="imgDado"
+        class="dado-img"
+        src="./dadojumper.png">
+
+      <div id="resultadoDados"></div>
+
+    `;
+
+  }
+
+  /* =========================
+     MOEDA
+  ========================= */
+
+  else if(jogo === "moeda"){
+
+    area.innerHTML = `
+
+      <h2>Cara ou Coroa</h2>
+
+      <div id="vidasBox">
+
+        ${mostrarVidas()}
+
+      </div>
+
+      <div class="moeda-opcoes">
+
+        <img
+          src="./carajumper.png"
+          class="moeda-btn"
+          onclick="jogarMoeda('Cara')">
+
+        <img
+          src="./coroajumper.png"
+          class="moeda-btn"
+          onclick="jogarMoeda('Coroa')">
+
+      </div>
+
+      <br>
+
+      <img
+        id="moedaCentral"
+        class="moeda-central"
+        src="./carajumper.png">
+
+      <div id="resultadoMoeda"></div>
+
+    `;
+
+  }
+
 }
 
-function rolarDados() {
-    let d1 = Math.floor(Math.random() * 6) + 1;
-    let d2 = Math.floor(Math.random() * 6) + 1;
+/* =========================
+   MOSTRAR VIDAS
+========================= */
 
-    document.getElementById("dado1").innerText = "Você: " + d1;
-    document.getElementById("dado2").innerText = "PC: " + d2;
+function mostrarVidas(){
 
-    let res = d1 > d2 ? "🔥 Você venceu!" :
-              d2 > d1 ? "❌ Você perdeu!" : "😐 Empate!";
+  return `
 
-    document.getElementById("resultadoDados").innerText = res;
+    <img
+      class="vida"
+      src="${coracaoCheio}">
+
+    <img
+      class="vida"
+      src="${coracaoCheio}">
+
+    <img
+      class="vida"
+      src="${coracaoCheio}">
+
+  `;
+
 }
 
-function jogarMoeda(escolha) {
-    let sorteio = Math.random() < 0.5 ? "Cara" : "Coroa";
+/* =========================
+   ATUALIZAR VIDAS
+========================= */
 
-    let res = sorteio === escolha ? "🔥 Acertou!" : "❌ Errou!";
+function atualizarVidas(){
 
-    document.getElementById("resultadoMoeda").innerText =
-        `Deu: ${sorteio} - ${res}`;
+  const coracoes =
+    document.querySelectorAll(
+      ".vida"
+    );
+
+  coracoes.forEach((c,i)=>{
+
+    if(i < vidas){
+
+      c.src = coracaoCheio;
+
+    }
+
+    else{
+
+      c.src = coracaoMorto;
+
+    }
+
+  });
+
+}
+
+/* =========================
+   PERDER VIDA
+========================= */
+
+function perderVida(){
+
+  vidas--;
+
+  atualizarVidas();
+
+  document.body.classList.add(
+    "tela-tremendo"
+  );
+
+  setTimeout(()=>{
+
+    document.body.classList.remove(
+      "tela-tremendo"
+    );
+
+  },300);
+
+  if(vidas <= 0){
+
+    mostrarGameOver();
+
+  }
+
+}
+
+/* =========================
+   JOKENPO
+========================= */
+
+function jogarJokenpo(escolha){
+
+  const opcoes = [
+
+    "Pedra",
+    "Papel",
+    "Tesoura"
+
+  ];
+
+  const pc =
+    opcoes[
+      Math.floor(
+        Math.random()*3
+      )
+    ];
+
+  let resultado = "";
+
+  if(escolha === pc){
+
+    resultado = "⚖️ EMPATE";
+
+  }
+
+  else if(
+
+    (escolha === "Pedra" && pc === "Tesoura") ||
+
+    (escolha === "Papel" && pc === "Pedra") ||
+
+    (escolha === "Tesoura" && pc === "Papel")
+
+  ){
+
+    resultado = "🎉 VOCÊ GANHOU";
+
+    mostrarVictory();
+
+  }
+
+  else{
+
+    resultado = "❌ VOCÊ PERDEU";
+
+    perderVida();
+
+  }
+
+  document.getElementById(
+    "resultado"
+  ).innerHTML = `
+
+    Você:
+    ${escolha}
+
+    <br><br>
+
+    PC:
+    ${pc}
+
+    <br><br>
+
+    ${resultado}
+
+  `;
+
+}
+
+/* =========================
+   DADO
+========================= */
+
+function jogarDado(){
+
+  const img =
+    document.getElementById(
+      "imgDado"
+    );
+
+  img.classList.add(
+    "girando"
+  );
+
+  setTimeout(()=>{
+
+    img.src =
+      "./dadojumper.png";
+
+    img.classList.remove(
+      "girando"
+    );
+
+    const numero =
+      Math.floor(
+        Math.random()*6
+      ) + 1;
+
+    if(numero >= 4){
+
+      document.getElementById(
+        "resultadoDados"
+      ).innerHTML = `
+
+        <span class="vitoria">
+
+          🎉 Você tirou ${numero}
+
+        </span>
+
+      `;
+
+      mostrarVictory();
+
+    }
+
+    else{
+
+      document.getElementById(
+        "resultadoDados"
+      ).innerHTML = `
+
+        <span class="derrota">
+
+          ❌ Você tirou ${numero}
+
+        </span>
+
+      `;
+
+      perderVida();
+
+    }
+
+  },1000);
+
+}
+
+/* =========================
+   MOEDA
+========================= */
+
+function jogarMoeda(escolha){
+
+  const moeda =
+    document.getElementById(
+      "moedaCentral"
+    );
+
+  moeda.classList.add(
+    "girando-moeda"
+  );
+
+  setTimeout(()=>{
+
+    const resultado =
+      Math.random() < 0.5
+      ? "Cara"
+      : "Coroa";
+
+    moeda.src =
+
+      resultado === "Cara"
+
+      ? "./carajumper.png"
+
+      : "./coroajumper.png";
+
+    moeda.classList.remove(
+      "girando-moeda"
+    );
+
+    if(escolha === resultado){
+
+      document.getElementById(
+        "resultadoMoeda"
+      ).innerHTML = `
+
+        <span class="vitoria">
+
+          🎉 ACERTOU
+
+        </span>
+
+      `;
+
+      mostrarVictory();
+
+    }
+
+    else{
+
+      document.getElementById(
+        "resultadoMoeda"
+      ).innerHTML = `
+
+        <span class="derrota">
+
+          ❌ ERROU
+
+        </span>
+
+      `;
+
+      perderVida();
+
+    }
+
+  },1000);
+
+}
+
+/* =========================
+   GAME OVER
+========================= */
+
+function mostrarGameOver(){
+
+  const tela =
+    document.getElementById(
+      "gameOverTela"
+    );
+
+  tela.classList.add(
+    "ativo"
+  );
+
+  setTimeout(()=>{
+
+    tela.classList.remove(
+      "ativo"
+    );
+
+  },3000);
+
+}
+
+/* =========================
+   VICTORY
+========================= */
+
+function mostrarVictory(){
+
+  const tela =
+    document.getElementById(
+      "victoryTela"
+    );
+
+  tela.classList.add(
+    "ativo"
+  );
+
+  setTimeout(()=>{
+
+    tela.classList.remove(
+      "ativo"
+    );
+
+  },2000);
+
 }

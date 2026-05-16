@@ -1,81 +1,458 @@
-
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    color: white;
-    text-align: center;
-
-    background: url('../fundo.png') center center / cover no-repeat fixed;
-}
-/* TOPO */
-.topo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-    padding: 20px;
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
-.logo {
-    width: 60px;
-    filter: drop-shadow(0 0 10px #00ffcc);
+body{
+
+  font-family:Arial,sans-serif;
+
+  background:#12051f;
+
+  overflow-x:hidden;
+
+  color:white;
+
+  text-align:center;
+
 }
 
-/* TÍTULOS */
-h1 {
-    text-shadow: 0 0 10px #00ffcc;
-    margin: 0;
+/* FUNDO */
+
+.bg-wrap{
+
+  position:fixed;
+
+  inset:0;
+
+  z-index:-3;
+
 }
 
-.topo h1 {
-    text-shadow: 0 0 12px #00ffcc;
+.bg-img{
+
+  width:100%;
+
+  height:100%;
+
+  object-fit:cover;
+
+  opacity:0.35;
+
 }
 
-.subtitulo {
-    opacity: 0.75;
-    margin-top: 5px;
+/* GRID */
+
+.grid-bg{
+
+  position:fixed;
+
+  inset:0;
+
+  z-index:-2;
+
+  background-image:
+
+    linear-gradient(
+      rgba(0,255,255,0.08) 1px,
+      transparent 1px
+    ),
+
+    linear-gradient(
+      90deg,
+      rgba(0,255,255,0.08) 1px,
+      transparent 1px
+    );
+
+  background-size:50px 50px;
+
 }
 
+/* CONTEUDO */
 
-.games {
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-    margin-top: 30px;
-    flex-wrap: wrap;
+.content{
+
+  position:relative;
+
+  z-index:10;
+
+  padding:25px;
+
 }
 
-/* CARD DOS JOGOS */
-.card {
-    background: rgba(0,0,0,0.4);
-    border: 1px solid rgba(0,255,204,0.25);
-    backdrop-filter: blur(6px);
+/* TITULO */
 
-    padding: 25px;
-    border-radius: 20px;
-    width: 220px;
+.top-title{
 
-    cursor: pointer;
-    transition: 0.3s;
+  font-size:18px;
+
+  letter-spacing:6px;
+
+  margin-bottom:30px;
+
+  font-family:monospace;
+
+  color:#00ffee;
+
+  text-shadow:
+    0 0 10px #00ffee;
+
 }
 
-.card:hover {
-    transform: scale(1.08);
-    box-shadow: 0 0 25px #00ffcc;
+/* MENU */
+
+.games{
+
+  display:flex;
+
+  justify-content:center;
+
+  gap:20px;
+
+  flex-wrap:wrap;
+
 }
 
+/* CARD */
 
-.img-btn {
-    width: 100px;
-    cursor: pointer;
-    transition: 0.3s;
+.game-card{
+
+  width:220px;
+
+  min-height:220px;
+
+  border-radius:20px;
+
+  overflow:hidden;
+
+  background:
+
+    linear-gradient(
+      180deg,
+      rgba(140,0,255,0.8),
+      rgba(40,0,80,0.9)
+    );
+
+  border:2px solid #00d9ff;
+
+  box-shadow:
+    0 0 20px rgba(0,217,255,0.5);
+
+  transition:0.3s;
+
+  cursor:pointer;
+
 }
 
-.img-btn:hover {
-    transform: scale(1.2);
+.game-card:hover{
+
+  transform:
+    translateY(-10px)
+    scale(1.03);
+
 }
 
-/* ÁREA DO JOGO */
-#areaJogo {
-    margin-top: 30px;
+/* TITULO PIXEL */
+
+.game-title-box{
+
+  height:140px;
+
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+
+  padding:15px;
+
+  font-size:30px;
+
+  font-weight:900;
+
+  text-transform:uppercase;
+
+  color:#00ffee;
+
+  font-family:monospace;
+
+  text-shadow:
+    3px 3px #001aff,
+    0 0 15px #00ffee;
+
+}
+
+/* BOTAO */
+
+.play-btn{
+
+  width:100%;
+
+  padding:14px;
+
+  border:none;
+
+  cursor:pointer;
+
+  font-size:16px;
+
+  font-weight:bold;
+
+  color:white;
+
+  background:
+
+    linear-gradient(
+      90deg,
+      #00aaff,
+      #ff00ff
+    );
+
+}
+
+/* AREA JOGO */
+
+#areaJogo{
+
+  width:min(450px,92%);
+
+  margin:30px auto;
+
+  padding:20px;
+
+  border-radius:20px;
+
+  background:
+    rgba(0,0,0,0.55);
+
+  border:
+    1px solid rgba(0,255,255,0.3);
+
+}
+
+/* TITULO */
+
+#areaJogo h2{
+
+  font-size:28px;
+
+  margin-bottom:15px;
+
+  color:#00ffee;
+
+}
+
+/* VIDAS */
+
+#vidasBox{
+
+  display:flex;
+
+  justify-content:center;
+
+  gap:10px;
+
+  margin-bottom:20px;
+
+}
+
+.vida{
+
+  width:32px;
+
+}
+
+/* JOKENPO */
+
+.opcoes{
+
+  display:flex;
+
+  justify-content:center;
+
+  flex-wrap:wrap;
+
+  gap:10px;
+
+}
+
+.img-btn{
+
+  width:80px;
+
+  cursor:pointer;
+
+  transition:0.3s;
+
+}
+
+.img-btn:hover{
+
+  transform:scale(1.1);
+
+}
+
+/* DADOS */
+
+.dados-box{
+
+  display:flex;
+
+  justify-content:center;
+
+  gap:30px;
+
+  margin:20px 0;
+
+}
+
+.dado-img{
+
+  width:120px;
+
+  image-rendering:pixelated;
+
+}
+
+/* MOEDA */
+
+.moeda-opcoes{
+
+  display:flex;
+
+  justify-content:center;
+
+  gap:20px;
+
+  margin-top:20px;
+
+}
+
+.moeda-btn{
+
+  width:90px;
+
+  cursor:pointer;
+
+}
+
+.moeda-central{
+
+  width:120px;
+
+  margin-top:20px;
+
+}
+
+/* RESULTADOS */
+
+#resultado,
+#resultadoDados,
+#resultadoMoeda{
+
+  margin-top:15px;
+
+  font-size:20px;
+
+  font-weight:bold;
+
+}
+
+/* CORES */
+
+.vitoria{
+
+  color:#00ff99;
+
+}
+
+.derrota{
+
+  color:#ff2255;
+
+}
+
+.empate{
+
+  color:#ffee00;
+
+}
+
+/* GAME OVER */
+
+#gameOverTela,
+#victoryTela{
+
+  position:fixed;
+
+  inset:0;
+
+  background:
+    rgba(0,0,0,0.9);
+
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+
+  opacity:0;
+
+  pointer-events:none;
+
+  transition:0.5s;
+
+  z-index:9999;
+
+}
+
+#gameOverTela.ativo,
+#victoryTela.ativo{
+
+  opacity:1;
+
+}
+
+#gameOverTela img,
+#victoryTela img{
+
+  width:300px;
+
+}
+
+/* ANIMAÇÕES */
+
+.girando{
+
+  animation:girar 1s linear;
+}
+
+@keyframes girar{
+
+  from{
+    transform:rotate(0deg);
+  }
+
+  to{
+    transform:rotate(360deg);
+  }
+
+}
+
+.girando-moeda{
+
+  animation:girarMoeda 1s linear;
+}
+
+@keyframes girarMoeda{
+
+  from{
+    transform:rotateY(0deg);
+  }
+
+  to{
+    transform:rotateY(360deg);
+  }
+
 }
