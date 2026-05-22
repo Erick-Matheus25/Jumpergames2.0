@@ -1,8 +1,17 @@
+```css
+/* =========================
+   RESET
+========================= */
+
 *{
   margin:0;
   padding:0;
   box-sizing:border-box;
 }
+
+/* =========================
+   BODY
+========================= */
 
 body{
 
@@ -18,7 +27,9 @@ body{
 
 }
 
-/* FUNDO */
+/* =========================
+   FUNDO
+========================= */
 
 .bg-wrap{
 
@@ -42,7 +53,9 @@ body{
 
 }
 
-/* GRID */
+/* =========================
+   GRID
+========================= */
 
 .grid-bg{
 
@@ -69,7 +82,9 @@ body{
 
 }
 
-/* CONTEUDO */
+/* =========================
+   CONTEUDO
+========================= */
 
 .content{
 
@@ -81,7 +96,9 @@ body{
 
 }
 
-/* TITULO */
+/* =========================
+   TITULO
+========================= */
 
 .top-title{
 
@@ -100,7 +117,9 @@ body{
 
 }
 
-/* MENU */
+/* =========================
+   MENU
+========================= */
 
 .games{
 
@@ -114,7 +133,9 @@ body{
 
 }
 
-/* CARD */
+/* =========================
+   CARD
+========================= */
 
 .game-card{
 
@@ -153,7 +174,9 @@ body{
 
 }
 
-/* TITULO PIXEL */
+/* =========================
+   TITULO CARD
+========================= */
 
 .game-title-box{
 
@@ -183,7 +206,9 @@ body{
 
 }
 
-/* BOTAO */
+/* =========================
+   BOTAO
+========================= */
 
 .play-btn{
 
@@ -209,41 +234,60 @@ body{
       #ff00ff
     );
 
+  transition:0.3s;
+
 }
 
-/* AREA JOGO */
+.play-btn:hover{
+
+  filter:brightness(1.2);
+
+}
+
+/* =========================
+   AREA JOGO
+========================= */
 
 #areaJogo{
 
-  width:min(450px,92%);
+  width:min(600px,94%);
 
   margin:30px auto;
 
-  padding:20px;
+  padding:30px;
 
-  border-radius:20px;
+  border-radius:28px;
 
   background:
     rgba(0,0,0,0.55);
 
   border:
-    1px solid rgba(0,255,255,0.3);
+    1px solid rgba(0,255,255,0.25);
+
+  backdrop-filter:blur(12px);
+
+  box-shadow:
+    0 0 25px rgba(0,255,255,0.08);
 
 }
 
-/* TITULO */
+/* =========================
+   TITULO JOGO
+========================= */
 
 #areaJogo h2{
 
-  font-size:28px;
+  font-size:34px;
 
-  margin-bottom:15px;
+  margin-bottom:20px;
 
   color:#00ffee;
 
 }
 
-/* VIDAS */
+/* =========================
+   VIDAS
+========================= */
 
 #vidasBox{
 
@@ -263,7 +307,9 @@ body{
 
 }
 
-/* JOKENPO */
+/* =========================
+   JOKENPO
+========================= */
 
 .opcoes{
 
@@ -273,13 +319,13 @@ body{
 
   flex-wrap:wrap;
 
-  gap:10px;
+  gap:15px;
 
 }
 
 .img-btn{
 
-  width:80px;
+  width:85px;
 
   cursor:pointer;
 
@@ -293,19 +339,9 @@ body{
 
 }
 
-/* DADOS */
-
-.dados-box{
-
-  display:flex;
-
-  justify-content:center;
-
-  gap:30px;
-
-  margin:20px 0;
-
-}
+/* =========================
+   DADOS
+========================= */
 
 .dado-img{
 
@@ -315,7 +351,9 @@ body{
 
 }
 
-/* MOEDA */
+/* =========================
+   MOEDA
+========================= */
 
 .moeda-opcoes{
 
@@ -345,21 +383,21 @@ body{
 
 }
 
-/* RESULTADOS */
+/* =========================
+   RESULTADOS
+========================= */
 
 #resultado,
 #resultadoDados,
 #resultadoMoeda{
 
-  margin-top:15px;
+  margin-top:20px;
 
-  font-size:20px;
+  font-size:22px;
 
   font-weight:bold;
 
 }
-
-/* CORES */
 
 .vitoria{
 
@@ -373,13 +411,9 @@ body{
 
 }
 
-.empate{
-
-  color:#ffee00;
-
-}
-
-/* GAME OVER */
+/* =========================
+   GAME OVER
+========================= */
 
 #gameOverTela,
 #victoryTela{
@@ -421,11 +455,14 @@ body{
 
 }
 
-/* ANIMAÇÕES */
+/* =========================
+   ANIMACOES
+========================= */
 
 .girando{
 
   animation:girar 1s linear;
+
 }
 
 @keyframes girar{
@@ -443,6 +480,7 @@ body{
 .girando-moeda{
 
   animation:girarMoeda 1s linear;
+
 }
 
 @keyframes girarMoeda{
@@ -453,6 +491,461 @@ body{
 
   to{
     transform:rotateY(360deg);
+  }
+
+}
+
+/* =========================
+   INTERRUPTOR
+========================= */
+
+.cenario-luz{
+
+  position:relative;
+
+  width:320px;
+
+  height:420px;
+
+  margin:25px auto;
+
+  border-radius:20px;
+
+  overflow:hidden;
+
+  border:2px solid #00ffee;
+
+  background:#000;
+
+  box-shadow:
+    0 0 20px rgba(0,255,255,0.4);
+
+}
+
+.cenario-bg{
+
+  position:absolute;
+
+  top:0;
+
+  left:0;
+
+  width:100%;
+
+  height:100%;
+
+  object-fit:cover;
+
+  z-index:1;
+
+}
+
+.tomada-box{
+
+  position:absolute;
+
+  bottom:20px;
+
+  right:20px;
+
+  z-index:4;
+
+}
+
+.tomada-img{
+
+  width:90px;
+
+  display:block;
+
+  cursor:pointer;
+
+  transition:0.3s;
+
+}
+
+.tomada-img:hover{
+
+  transform:scale(1.08);
+
+}
+
+/* =========================
+   COFRE PREMIUM
+========================= */
+
+.cofre-container{
+
+  width:100%;
+
+  display:flex;
+
+  flex-direction:column;
+
+  align-items:center;
+
+  gap:22px;
+
+}
+
+/* TITULO */
+
+.titulo-cofre{
+
+  font-size:38px;
+
+  color:#00ffee;
+
+  text-shadow:
+    0 0 15px #00ffee;
+
+}
+
+/* BOX CALDEIRAO */
+
+.cofre-box{
+
+  position:relative;
+
+  width:260px;
+
+  height:260px;
+
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+
+  background:
+
+    radial-gradient(
+      circle,
+      rgba(255,180,0,0.12),
+      transparent 70%
+    );
+
+  border-radius:50%;
+
+}
+
+/* CALDEIRAO */
+
+.caldeirao{
+
+  width:220px;
+
+  image-rendering:pixelated;
+
+  filter:
+    drop-shadow(0 0 18px rgba(255,200,0,0.5));
+
+  animation:
+    flutuar 3s ease-in-out infinite;
+
+}
+
+@keyframes flutuar{
+
+  0%{
+    transform:translateY(0px);
+  }
+
+  50%{
+    transform:translateY(-8px);
+  }
+
+  100%{
+    transform:translateY(0px);
+  }
+
+}
+
+/* MOEDAS */
+
+#coins{
+
+  position:absolute;
+
+  inset:0;
+
+  overflow:hidden;
+
+  pointer-events:none;
+
+}
+
+.coin{
+
+  width:42px;
+
+  position:absolute;
+
+  top:-50px;
+
+  animation:
+    cair 1.2s linear forwards;
+
+}
+
+@keyframes cair{
+
+  from{
+
+    transform:
+      translateY(0)
+      rotate(0deg);
+
+    opacity:1;
+
+  }
+
+  to{
+
+    transform:
+      translateY(220px)
+      rotate(360deg);
+
+    opacity:0;
+
+  }
+
+}
+
+/* SALDO */
+
+.saldo-box{
+
+  width:100%;
+
+  padding:20px;
+
+  border-radius:22px;
+
+  background:
+    rgba(255,255,255,0.06);
+
+  border:
+    1px solid rgba(255,255,255,0.08);
+
+  backdrop-filter:blur(10px);
+
+  box-shadow:
+    0 0 20px rgba(0,255,255,0.08);
+
+}
+
+.saldo-box p{
+
+  font-size:18px;
+
+  opacity:0.8;
+
+  margin-bottom:8px;
+
+}
+
+.saldo-box h1{
+
+  font-size:46px;
+
+  color:#ffe066;
+
+  text-shadow:
+    0 0 12px gold;
+
+}
+
+/* CONTADORES */
+
+.contador-moedas{
+
+  width:100%;
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,1fr);
+
+  gap:12px;
+
+}
+
+.contador-item{
+
+  padding:15px;
+
+  border-radius:16px;
+
+  background:
+    rgba(255,255,255,0.05);
+
+  border:
+    1px solid rgba(255,255,255,0.08);
+
+  font-size:18px;
+
+  font-weight:bold;
+
+}
+
+/* BOTOES */
+
+.botoes-moedas{
+
+  width:100%;
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,1fr);
+
+  gap:14px;
+
+}
+
+.botoes-moedas button{
+
+  padding:16px;
+
+  border:none;
+
+  border-radius:16px;
+
+  cursor:pointer;
+
+  font-size:17px;
+
+  font-weight:bold;
+
+  color:#000;
+
+  background:
+
+    linear-gradient(
+      90deg,
+      #ffd000,
+      #ff9d00
+    );
+
+  box-shadow:
+    0 0 12px rgba(255,180,0,0.4);
+
+  transition:0.25s;
+
+}
+
+.botoes-moedas button:hover{
+
+  transform:
+    translateY(-3px)
+    scale(1.03);
+
+}
+
+/* ACOES */
+
+.acoes-cofre{
+
+  width:100%;
+
+  display:flex;
+
+  gap:14px;
+
+}
+
+.acoes-cofre button{
+
+  flex:1;
+
+  padding:16px;
+
+  border:none;
+
+  border-radius:18px;
+
+  cursor:pointer;
+
+  font-size:18px;
+
+  font-weight:bold;
+
+  color:white;
+
+  transition:0.25s;
+
+}
+
+.btn-sacar{
+
+  background:
+
+    linear-gradient(
+      90deg,
+      #00c853,
+      #00e676
+    );
+
+}
+
+.btn-esvaziar{
+
+  background:
+
+    linear-gradient(
+      90deg,
+      #ff1744,
+      #ff5252
+    );
+
+}
+
+.acoes-cofre button:hover{
+
+  transform:
+    translateY(-3px)
+    scale(1.03);
+
+}
+
+/* RESPONSIVO */
+
+@media(max-width:700px){
+
+  .games{
+
+    flex-direction:column;
+
+    align-items:center;
+
+  }
+
+  .game-card{
+
+    width:90%;
+
+  }
+
+  .cenario-luz{
+
+    width:95%;
+
+    height:380px;
+
+  }
+
+  .contador-moedas,
+  .botoes-moedas{
+
+    grid-template-columns:1fr;
+
+  }
+
+  .acoes-cofre{
+
+    flex-direction:column;
+
   }
 
 }
