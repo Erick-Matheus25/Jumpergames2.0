@@ -1,0 +1,1312 @@
+
+/* =========================
+   RESET
+========================= */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+/* =========================
+   BODY
+========================= */
+
+body{
+
+  font-family:Arial,sans-serif;
+
+  background:#12051f;
+
+  overflow-x:hidden;
+
+  color:white;
+
+  text-align:center;
+
+}
+
+/* =========================
+   FUNDO
+========================= */
+
+.bg-wrap{
+
+  position:fixed;
+
+  inset:0;
+
+  z-index:-3;
+
+}
+
+.bg-img{
+
+  width:100%;
+
+  height:100%;
+
+  object-fit:cover;
+
+  opacity:0.35;
+
+}
+
+/* =========================
+   GRID
+========================= */
+
+.grid-bg{
+
+  position:fixed;
+
+  inset:0;
+
+  z-index:-2;
+
+  background-image:
+
+    linear-gradient(
+      rgba(0,255,255,0.08) 1px,
+      transparent 1px
+    ),
+
+    linear-gradient(
+      90deg,
+      rgba(0,255,255,0.08) 1px,
+      transparent 1px
+    );
+
+  background-size:50px 50px;
+
+  animation:gridMove 8s linear infinite;
+
+}
+
+@keyframes gridMove{
+
+  from{
+    background-position:0 0;
+  }
+
+  to{
+    background-position:50px 50px;
+  }
+
+}
+
+/* =========================
+   CONTEUDO
+========================= */
+
+.content{
+
+  position:relative;
+
+  z-index:10;
+
+  padding:25px;
+
+}
+
+/* =========================
+   TITULO
+========================= */
+
+.titulo{
+
+  font-size:65px;
+
+  margin-bottom:10px;
+
+  color:#00ffee;
+
+  text-shadow:
+    0 0 10px #00ffee,
+    0 0 25px #00ffee,
+    0 0 50px #001aff;
+
+  animation:piscarTitulo 2s infinite;
+
+}
+
+@keyframes piscarTitulo{
+
+  0%{
+    opacity:1;
+  }
+
+  50%{
+    opacity:0.7;
+  }
+
+  100%{
+    opacity:1;
+  }
+
+}
+
+.top-title{
+
+  font-size:18px;
+
+  letter-spacing:6px;
+
+  margin-bottom:30px;
+
+  font-family:monospace;
+
+  color:#00ffee;
+
+  text-shadow:
+    0 0 10px #00ffee;
+
+}
+
+/* =========================
+   MENU
+========================= */
+
+.games{
+
+  display:flex;
+
+  justify-content:center;
+
+  gap:20px;
+
+  flex-wrap:wrap;
+
+}
+
+/* =========================
+   CARD
+========================= */
+
+.game-card{
+
+  width:220px;
+
+  min-height:220px;
+
+  border-radius:20px;
+
+  overflow:hidden;
+
+  background:
+
+    linear-gradient(
+      180deg,
+      rgba(140,0,255,0.8),
+      rgba(40,0,80,0.9)
+    );
+
+  border:2px solid #00d9ff;
+
+  box-shadow:
+    0 0 20px rgba(0,217,255,0.5);
+
+  transition:0.3s;
+
+  cursor:pointer;
+
+  position:relative;
+
+}
+
+.game-card::before{
+
+  content:"";
+
+  position:absolute;
+
+  top:-100%;
+
+  left:-100%;
+
+  width:200%;
+
+  height:200%;
+
+  background:
+    linear-gradient(
+      45deg,
+      transparent,
+      rgba(255,255,255,0.15),
+      transparent
+    );
+
+  transform:rotate(25deg);
+
+  transition:0.8s;
+
+}
+
+.game-card:hover::before{
+
+  top:100%;
+  left:100%;
+
+}
+
+.game-card:hover{
+
+  transform:
+    translateY(-10px)
+    scale(1.03);
+
+}
+
+/* =========================
+   TITULO CARD
+========================= */
+
+.game-title-box{
+
+  height:140px;
+
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+
+  padding:15px;
+
+  font-size:30px;
+
+  font-weight:900;
+
+  text-transform:uppercase;
+
+  color:#00ffee;
+
+  font-family:monospace;
+
+  text-shadow:
+    3px 3px #001aff,
+    0 0 15px #00ffee;
+
+}
+
+/* =========================
+   BOTAO
+========================= */
+
+.play-btn{
+
+  width:100%;
+
+  padding:14px;
+
+  border:none;
+
+  cursor:pointer;
+
+  font-size:16px;
+
+  font-weight:bold;
+
+  color:white;
+
+  background:
+
+    linear-gradient(
+      90deg,
+      #00aaff,
+      #ff00ff
+    );
+
+  transition:0.3s;
+
+}
+
+.play-btn:hover{
+
+  filter:brightness(1.2);
+
+  letter-spacing:1px;
+
+}
+
+/* =========================
+   AREA JOGO
+========================= */
+
+#areaJogo{
+
+  width:min(700px,94%);
+
+  margin:30px auto;
+
+  padding:30px;
+
+  border-radius:28px;
+
+  background:
+    rgba(0,0,0,0.55);
+
+  border:
+    1px solid rgba(0,255,255,0.25);
+
+  backdrop-filter:blur(12px);
+
+  box-shadow:
+    0 0 25px rgba(0,255,255,0.08);
+
+  animation:fadeArea 0.5s ease;
+
+}
+
+@keyframes fadeArea{
+
+  from{
+    opacity:0;
+    transform:translateY(20px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+}
+
+/* =========================
+   TITULO JOGO
+========================= */
+
+#areaJogo h2{
+
+  font-size:34px;
+
+  margin-bottom:20px;
+
+  color:#00ffee;
+
+}
+
+/* =========================
+   VIDAS
+========================= */
+
+#vidasBox{
+
+  display:flex;
+
+  justify-content:center;
+
+  gap:10px;
+
+  margin-bottom:20px;
+
+}
+
+.vida{
+
+  width:32px;
+
+  animation:pulsarVida 1.5s infinite;
+
+}
+
+@keyframes pulsarVida{
+
+  0%{
+    transform:scale(1);
+  }
+
+  50%{
+    transform:scale(1.1);
+  }
+
+  100%{
+    transform:scale(1);
+  }
+
+}
+
+/* =========================
+   JOKENPO
+========================= */
+
+.opcoes{
+
+  display:flex;
+
+  justify-content:center;
+
+  flex-wrap:wrap;
+
+  gap:15px;
+
+}
+
+.img-btn{
+
+  width:85px;
+
+  cursor:pointer;
+
+  transition:0.3s;
+
+}
+
+.img-btn:hover{
+
+  transform:scale(1.1) rotate(5deg);
+
+  filter:
+    drop-shadow(0 0 10px #00ffee);
+
+}
+
+/* =========================
+   DADOS
+========================= */
+
+.dado-img{
+
+  width:120px;
+
+  image-rendering:pixelated;
+
+  filter:
+    drop-shadow(0 0 10px cyan);
+
+}
+
+/* =========================
+   MOEDA
+========================= */
+
+.moeda-opcoes{
+
+  display:flex;
+
+  justify-content:center;
+
+  gap:20px;
+
+  margin-top:20px;
+
+}
+
+.moeda-btn{
+
+  width:90px;
+
+  cursor:pointer;
+
+  transition:0.3s;
+
+}
+
+.moeda-btn:hover{
+
+  transform:scale(1.08);
+
+}
+
+.moeda-central{
+
+  width:120px;
+
+  margin-top:20px;
+
+  filter:
+    drop-shadow(0 0 15px gold);
+
+}
+
+/* =========================
+   RESULTADOS
+========================= */
+
+#resultado,
+#resultadoDados,
+#resultadoMoeda{
+
+  margin-top:20px;
+
+  font-size:22px;
+
+  font-weight:bold;
+
+}
+
+.vitoria{
+
+  color:#00ff99;
+
+  text-shadow:
+    0 0 10px #00ff99;
+
+}
+
+.derrota{
+
+  color:#ff2255;
+
+  text-shadow:
+    0 0 10px #ff2255;
+
+}
+
+/* =========================
+   GAME OVER
+========================= */
+
+#gameOverTela,
+#victoryTela{
+
+  position:fixed;
+
+  inset:0;
+
+  background:
+    rgba(0,0,0,0.9);
+
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+
+  opacity:0;
+
+  pointer-events:none;
+
+  transition:0.5s;
+
+  z-index:9999;
+
+}
+
+#gameOverTela.ativo,
+#victoryTela.ativo{
+
+  opacity:1;
+
+}
+
+#gameOverTela img,
+#victoryTela img{
+
+  width:300px;
+
+  animation:zoomTela 0.5s ease;
+
+}
+
+@keyframes zoomTela{
+
+  from{
+    transform:scale(0.5);
+  }
+
+  to{
+    transform:scale(1);
+  }
+
+}
+
+/* =========================
+   ANIMACOES
+========================= */
+
+.girando{
+
+  animation:girar 1s linear;
+
+}
+
+@keyframes girar{
+
+  from{
+    transform:rotate(0deg);
+  }
+
+  to{
+    transform:rotate(360deg);
+  }
+
+}
+
+.girando-moeda{
+
+  animation:girarMoeda 1s linear;
+
+}
+
+@keyframes girarMoeda{
+
+  from{
+    transform:rotateY(0deg);
+  }
+
+  to{
+    transform:rotateY(360deg);
+  }
+
+}
+
+/* =========================
+   INTERRUPTOR
+========================= */
+
+.cenario-luz{
+
+  position:relative;
+
+  width:320px;
+
+  height:420px;
+
+  margin:25px auto;
+
+  border-radius:20px;
+
+  overflow:hidden;
+
+  border:2px solid #00ffee;
+
+  background:#000;
+
+  box-shadow:
+    0 0 20px rgba(0,255,255,0.4);
+
+}
+
+.cenario-bg{
+
+  position:absolute;
+
+  top:0;
+
+  left:0;
+
+  width:100%;
+
+  height:100%;
+
+  object-fit:cover;
+
+  z-index:1;
+
+  transition:0.4s;
+
+}
+
+.tomada-box{
+
+  position:absolute;
+
+  bottom:20px;
+
+  right:20px;
+
+  z-index:4;
+
+}
+
+.tomada-img{
+
+  width:90px;
+
+  display:block;
+
+  cursor:pointer;
+
+  transition:0.3s;
+
+}
+
+.tomada-img:hover{
+
+  transform:scale(1.08);
+
+}
+
+/* =========================
+   COFRE PREMIUM
+========================= */
+
+.cofre-container{
+
+  width:100%;
+
+  display:flex;
+
+  flex-direction:column;
+
+  align-items:center;
+
+  gap:22px;
+
+}
+
+.titulo-cofre{
+
+  font-size:38px;
+
+  color:#00ffee;
+
+  text-shadow:
+    0 0 15px #00ffee;
+
+}
+
+.cofre-box{
+
+  position:relative;
+
+  width:260px;
+
+  height:260px;
+
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+
+  background:
+
+    radial-gradient(
+      circle,
+      rgba(255,180,0,0.12),
+      transparent 70%
+    );
+
+  border-radius:50%;
+
+}
+
+.caldeirao{
+
+  width:220px;
+
+  image-rendering:pixelated;
+
+  filter:
+    drop-shadow(0 0 18px rgba(255,200,0,0.5));
+
+  animation:
+    flutuar 3s ease-in-out infinite;
+
+}
+
+@keyframes flutuar{
+
+  0%{
+    transform:translateY(0px);
+  }
+
+  50%{
+    transform:translateY(-8px);
+  }
+
+  100%{
+    transform:translateY(0px);
+  }
+
+}
+
+#coins{
+
+  position:absolute;
+
+  inset:0;
+
+  overflow:hidden;
+
+  pointer-events:none;
+
+}
+
+.coin{
+
+  width:42px;
+
+  position:absolute;
+
+  top:-50px;
+
+  animation:
+    cair 1.2s linear forwards;
+
+}
+
+@keyframes cair{
+
+  from{
+
+    transform:
+      translateY(0)
+      rotate(0deg);
+
+    opacity:1;
+
+  }
+
+  to{
+
+    transform:
+      translateY(220px)
+      rotate(360deg);
+
+    opacity:0;
+
+  }
+
+}
+
+.total-box,
+.saldo-box{
+
+  width:100%;
+
+  padding:20px;
+
+  border-radius:22px;
+
+  background:
+    rgba(255,255,255,0.06);
+
+  border:
+    1px solid rgba(255,255,255,0.08);
+
+  backdrop-filter:blur(10px);
+
+  box-shadow:
+    0 0 20px rgba(0,255,255,0.08);
+
+}
+
+.total-box h3,
+.saldo-box p{
+
+  font-size:18px;
+
+  opacity:0.8;
+
+  margin-bottom:8px;
+
+}
+
+.total,
+.saldo-box h1{
+
+  font-size:46px;
+
+  color:#ffe066;
+
+  text-shadow:
+    0 0 12px gold;
+
+}
+
+.contador-moedas{
+
+  width:100%;
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,1fr);
+
+  gap:12px;
+
+}
+
+.contador-card,
+.contador-item{
+
+  padding:15px;
+
+  border-radius:16px;
+
+  background:
+    rgba(255,255,255,0.05);
+
+  border:
+    1px solid rgba(255,255,255,0.08);
+
+  font-size:18px;
+
+  font-weight:bold;
+
+  transition:0.3s;
+
+}
+
+.contador-card:hover,
+.contador-item:hover{
+
+  transform:scale(1.03);
+
+  background:
+    rgba(255,255,255,0.09);
+
+}
+
+.moedas,
+.botoes-moedas{
+
+  width:100%;
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,1fr);
+
+  gap:14px;
+
+}
+
+.moedas button,
+.botoes-moedas button{
+
+  padding:16px;
+
+  border:none;
+
+  border-radius:16px;
+
+  cursor:pointer;
+
+  font-size:17px;
+
+  font-weight:bold;
+
+  color:#000;
+
+  background:
+
+    linear-gradient(
+      90deg,
+      #ffd000,
+      #ff9d00
+    );
+
+  box-shadow:
+    0 0 12px rgba(255,180,0,0.4);
+
+  transition:0.25s;
+
+}
+
+.moedas button:hover,
+.botoes-moedas button:hover{
+
+  transform:
+    translateY(-3px)
+    scale(1.03);
+
+}
+
+.acoes-cofre{
+
+  width:100%;
+
+  display:flex;
+
+  gap:14px;
+
+}
+
+.acoes-cofre button{
+
+  flex:1;
+
+  padding:16px;
+
+  border:none;
+
+  border-radius:18px;
+
+  cursor:pointer;
+
+  font-size:18px;
+
+  font-weight:bold;
+
+  color:white;
+
+  transition:0.25s;
+
+}
+
+.btn-sacar{
+
+  background:
+
+    linear-gradient(
+      90deg,
+      #00c853,
+      #00e676
+    );
+
+}
+
+.btn-esvaziar{
+
+  background:
+
+    linear-gradient(
+      90deg,
+      #ff1744,
+      #ff5252
+    );
+
+}
+
+.acoes-cofre button:hover{
+
+  transform:
+    translateY(-3px)
+    scale(1.03);
+
+}
+
+/* =========================
+   POMODORO
+========================= */
+
+.pomodoro-box{
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:20px;
+
+  align-items:center;
+
+}
+
+#modoPomodoro{
+
+  font-size:26px;
+
+  color:#00ffee;
+
+  text-shadow:
+    0 0 10px #00ffee;
+
+}
+
+.pomodoro-timer{
+
+  font-size:70px;
+
+  font-weight:bold;
+
+  color:#ffffff;
+
+  text-shadow:
+    0 0 20px #00ffee;
+
+}
+
+.alerta-final{
+
+  animation:piscarFinal 0.5s infinite;
+
+}
+
+@keyframes piscarFinal{
+
+  0%{
+    color:white;
+  }
+
+  50%{
+    color:red;
+  }
+
+  100%{
+    color:white;
+  }
+
+}
+
+.barra-container{
+
+  width:100%;
+
+  height:20px;
+
+  background:
+    rgba(255,255,255,0.08);
+
+  border-radius:20px;
+
+  overflow:hidden;
+
+}
+
+.barra{
+
+  height:100%;
+
+  width:100%;
+
+  background:
+
+    linear-gradient(
+      90deg,
+      #00ffee,
+      #0066ff
+    );
+
+  transition:0.5s;
+
+}
+
+.config-pomodoro{
+
+  display:flex;
+
+  gap:20px;
+
+}
+
+.config-pomodoro div{
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:10px;
+
+}
+
+.config-pomodoro input{
+
+  width:100px;
+
+  padding:10px;
+
+  border:none;
+
+  border-radius:12px;
+
+  text-align:center;
+
+  font-size:18px;
+
+}
+
+.botoes-pomodoro{
+
+  display:flex;
+
+  gap:15px;
+
+  flex-wrap:wrap;
+
+  justify-content:center;
+
+}
+
+.botoes-pomodoro button{
+
+  padding:14px 22px;
+
+  border:none;
+
+  border-radius:15px;
+
+  cursor:pointer;
+
+  font-size:16px;
+
+  font-weight:bold;
+
+  color:white;
+
+  background:
+
+    linear-gradient(
+      90deg,
+      #00aaff,
+      #8a2be2
+    );
+
+  transition:0.3s;
+
+}
+
+.botoes-pomodoro button:hover{
+
+  transform:
+    scale(1.05);
+
+  filter:brightness(1.1);
+
+}
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media(max-width:700px){
+
+  .titulo{
+
+    font-size:42px;
+
+  }
+
+  .games{
+
+    flex-direction:column;
+
+    align-items:center;
+
+  }
+
+  .game-card{
+
+    width:90%;
+
+  }
+
+  .cenario-luz{
+
+    width:95%;
+
+    height:380px;
+
+  }
+
+  .contador-moedas,
+  .botoes-moedas,
+  .moedas{
+
+    grid-template-columns:1fr;
+
+  }
+
+  .acoes-cofre{
+
+    flex-direction:column;
+
+  }
+
+  .config-pomodoro{
+
+    flex-direction:column;
+
+  }
+
+  .pomodoro-timer{
+
+    font-size:52px;
+
+  }
+
+}
