@@ -1,31 +1,28 @@
-/* =========================
-   VARIAVEIS
-========================= */
-
 let vidas = 3;
 
 let luzLigada = false;
 
-/* =========================
-   COFRE
-========================= */
-
 let totalMoedas = 0;
 
-let moedas10 = 0;
-let moedas25 = 0;
-let moedas50 = 0;
-let moedas1 = 0;
+/* =========================
+   SONS
+========================= */
+
+const somVitoria =
+document.getElementById("somVitoria");
+
+const somDerrota =
+document.getElementById("somDerrota");
 
 /* =========================
    IMAGENS
 ========================= */
 
 const coracaoCheio =
-  "./coracaoCheio.png";
+"./coracaoCheio.png";
 
 const coracaoMorto =
-  "./coracaoMorto.png";
+"./coracaoMorto.png";
 
 /* =========================
    ABRIR JOGOS
@@ -33,309 +30,299 @@ const coracaoMorto =
 
 function abrirJogo(jogo){
 
-  const area =
-    document.getElementById(
-      "areaJogo"
-    );
+const area =
+document.getElementById("areaJogo");
 
-  vidas = 3;
+vidas = 3;
 
-  /* =========================
-     JOKENPO
-  ========================= */
+/* =========================
+   JOKENPO
+========================= */
 
-  if(jogo === "jokenpo"){
+if(jogo === "jokenpo"){
 
-    area.innerHTML = `
+area.innerHTML = `
 
-      <h2>🎮 Jokenpô</h2>
+<h2>🎮 Jokenpô</h2>
 
-      <div id="vidasBox">
+<div id="vidasBox">
+${mostrarVidas()}
+</div>
 
-        ${mostrarVidas()}
+<div class="opcoes">
 
-      </div>
+<img
+src="./pedrajumper.png"
+class="img-btn"
+onclick="jogarJokenpo('Pedra')">
 
-      <div class="opcoes">
+<img
+src="./papeljumper.png"
+class="img-btn"
+onclick="jogarJokenpo('Papel')">
 
-        <img
-          src="./pedrajumper.png"
-          class="img-btn"
-          onclick="jogarJokenpo('Pedra')">
+<img
+src="./tesourajumper.png"
+class="img-btn"
+onclick="jogarJokenpo('Tesoura')">
 
-        <img
-          src="./papeljumper.png"
-          class="img-btn"
-          onclick="jogarJokenpo('Papel')">
+</div>
 
-        <img
-          src="./tesourajumper.png"
-          class="img-btn"
-          onclick="jogarJokenpo('Tesoura')">
+<div id="resultado"></div>
 
-      </div>
+`;
 
-      <div id="resultado"></div>
+}
 
-    `;
+/* =========================
+   DADOS
+========================= */
 
-  }
+else if(jogo === "dados"){
 
-  /* =========================
-     DADOS
-  ========================= */
+area.innerHTML = `
 
-  else if(jogo === "dados"){
+<h2>🎲 Dados</h2>
 
-    area.innerHTML = `
+<div id="vidasBox">
+${mostrarVidas()}
+</div>
 
-      <h2>🎲 Batalha de Dados</h2>
+<img
+id="imgDado"
+class="dado-img"
+src="./dado1jumper.png"
+onclick="jogarDado()">
 
-      <div id="vidasBox">
+<div id="resultadoDados"></div>
 
-        ${mostrarVidas()}
+`;
 
-      </div>
+}
 
-      <button onclick="jogarDado()">
+/* =========================
+   MOEDA
+========================= */
 
-        🎲 ROLAR DADO
+else if(jogo === "moeda"){
 
-      </button>
+area.innerHTML = `
 
-      <br><br>
+<h2>🪙 Cara ou Coroa</h2>
 
-      <img
-        id="imgDado"
-        class="dado-img"
-        src="./dadojumper.png">
+<div id="vidasBox">
+${mostrarVidas()}
+</div>
 
-      <div id="resultadoDados"></div>
+<div class="moeda-opcoes">
 
-    `;
+<img
+src="./carajumper.png"
+class="moeda-btn"
+onclick="jogarMoeda('Cara')">
 
-  }
+<img
+src="./coroajumper.png"
+class="moeda-btn"
+onclick="jogarMoeda('Coroa')">
 
-  /* =========================
-     MOEDA
-  ========================= */
+</div>
 
-  else if(jogo === "moeda"){
+<br>
 
-    area.innerHTML = `
+<img
+id="moedaCentral"
+class="moeda-central"
+src="./carajumper.png">
 
-      <h2>🪙 Cara ou Coroa</h2>
+<div id="resultadoMoeda"></div>
 
-      <div id="vidasBox">
+`;
 
-        ${mostrarVidas()}
+}
 
-      </div>
+/* =========================
+   INTERRUPTOR
+========================= */
 
-      <div class="moeda-opcoes">
+else if(jogo === "interruptor"){
 
-        <img
-          src="./carajumper.png"
-          class="moeda-btn"
-          onclick="jogarMoeda('Cara')">
+area.innerHTML = `
 
-        <img
-          src="./coroajumper.png"
-          class="moeda-btn"
-          onclick="jogarMoeda('Coroa')">
+<h2>💡 Controle de Luz</h2>
 
-      </div>
+<div class="cenario-luz">
 
-      <br>
+<img
+id="cenarioBg"
+class="cenario-bg"
+src="./quartoescuro.png">
 
-      <img
-        id="moedaCentral"
-        class="moeda-central"
-        src="./carajumper.png">
+<div class="tomada-box">
 
-      <div id="resultadoMoeda"></div>
+<img
+id="tomada"
+class="tomada-img"
+src="./tomadadesligada.png"
+onclick="alternarLuz()">
 
-    `;
+</div>
 
-  }
+</div>
 
-  /* =========================
-     INTERRUPTOR
-  ========================= */
+`;
 
-  else if(jogo === "interruptor"){
+}
 
-    area.innerHTML = `
+/* =========================
+   COFRE
+========================= */
 
-      <h2>💡 Controle de Luz</h2>
+else if(jogo === "cofre"){
 
-      <div class="cenario-luz">
+area.innerHTML = `
 
-        <img
-          id="cenarioBg"
-          class="cenario-bg"
-          src="./quartoescuro.png">
+<h2>🏦 Cofrinho</h2>
 
-        <div class="tomada-box">
+<div class="cofre-box">
 
-          <img
-            id="tomada"
-            class="tomada-img"
-            src="./tomadadesligada.png"
-            onclick="alternarLuz()">
+<img
+src="./caldeirão.png"
+class="caldeirao">
 
-        </div>
+<div id="coins"></div>
 
-      </div>
+</div>
 
-    `;
+<h1 id="valorTotal">
+R$ ${totalMoedas.toFixed(2)}
+</h1>
 
-  }
+<div class="botoes-moedas">
 
-  /* =========================
-     COFRE DIGITAL
-  ========================= */
+<button onclick="adicionarMoeda(0.10)">
++ 10¢
+</button>
 
-  else if(jogo === "cofre"){
+<button onclick="adicionarMoeda(0.25)">
++ 25¢
+</button>
 
-    carregarCofre();
+<button onclick="adicionarMoeda(0.50)">
++ 50¢
+</button>
 
-    area.innerHTML = `
+<button onclick="adicionarMoeda(1)">
++ R$1
+</button>
 
-      <h2>🏦 Cofrinho Digital</h2>
+</div>
 
-      <div class="cofre-box">
+<br>
 
-        <img
-          class="caldeirao"
-          src="./caldeirão.png">
+<div class="acoes-cofre">
 
-        <div id="coins"></div>
+<button onclick="sacarValor()">
+💸 SACAR
+</button>
 
-      </div>
+<button onclick="esvaziarCofre()">
+🗑️ ESVAZIAR
+</button>
 
-      <div class="total-box">
+</div>
 
-        <h3>
+`;
 
-          Saldo Total
+}
 
-        </h3>
+/* =========================
+   POMODORO
+========================= */
 
-        <div class="total">
+else if(jogo === "pomodoro"){
 
-          R$
-          <span id="valorTotal">
+area.innerHTML = `
 
-            ${formatarValor(totalMoedas)}
+<h2>🍅 Pomodoro</h2>
 
-          </span>
+<div class="pomodoro-box">
 
-        </div>
+<div
+id="timerPomodoro"
+class="pomodoro-timer">
 
-      </div>
+25:00
 
-      <div class="contador-moedas">
+</div>
 
-        <div class="contador-card">
+<div class="botoes-pomodoro">
 
-          🪙 10¢:
-          <span id="m10">
+<button onclick="iniciarPomodoro()">
+▶ INICIAR
+</button>
 
-            ${moedas10}
+<button onclick="pararPomodoro()">
+⏹ PARAR
+</button>
 
-          </span>
+<button onclick="resetarPomodoro()">
+🔄 RESETAR
+</button>
 
-        </div>
+</div>
 
-        <div class="contador-card">
+</div>
 
-          🪙 25¢:
-          <span id="m25">
+`;
 
-            ${moedas25}
+}
 
-          </span>
+/* =========================
+   TECLADO
+========================= */
 
-        </div>
+else if(jogo === "teclado"){
 
-        <div class="contador-card">
+area.innerHTML = `
 
-          🪙 50¢:
-          <span id="m50">
+<h2>🎹 Piano</h2>
 
-            ${moedas50}
+<div class="teclado">
 
-          </span>
+<div class="tecla" onclick="tocarNota('do')">
+A<br>DO
+</div>
 
-        </div>
+<div class="tecla" onclick="tocarNota('re')">
+S<br>RE
+</div>
 
-        <div class="contador-card">
+<div class="tecla" onclick="tocarNota('mi')">
+D<br>MI
+</div>
 
-          💰 R$1:
-          <span id="m1">
+<div class="tecla" onclick="tocarNota('fa')">
+F<br>FA
+</div>
 
-            ${moedas1}
+<div class="tecla" onclick="tocarNota('sol')">
+G<br>SOL
+</div>
 
-          </span>
+<div class="tecla" onclick="tocarNota('la')">
+H<br>LA
+</div>
 
-        </div>
+<div class="tecla" onclick="tocarNota('si')">
+J<br>SI
+</div>
 
-      </div>
+</div>
 
-      <div class="moedas">
+`;
 
-        <button
-          onclick="adicionarMoeda(0.10)">
-
-          + R$0,10
-
-        </button>
-
-        <button
-          onclick="adicionarMoeda(0.25)">
-
-          + R$0,25
-
-        </button>
-
-        <button
-          onclick="adicionarMoeda(0.50)">
-
-          + R$0,50
-
-        </button>
-
-        <button
-          onclick="adicionarMoeda(1)">
-
-          + R$1,00
-
-        </button>
-
-      </div>
-
-      <div class="acoes-cofre">
-
-        <button
-          onclick="sacarValor()">
-
-          💸 Sacar
-
-        </button>
-
-        <button
-          onclick="esvaziarCofre()">
-
-          🗑️ Esvaziar
-
-        </button>
-
-      </div>
-
-    `;
-
-  }
+}
 
 }
 
@@ -345,68 +332,58 @@ function abrirJogo(jogo){
 
 function mostrarVidas(){
 
-  return `
+return `
 
-    <img
-      class="vida"
-      src="${coracaoCheio}">
+<img class="vida" src="${coracaoCheio}">
+<img class="vida" src="${coracaoCheio}">
+<img class="vida" src="${coracaoCheio}">
 
-    <img
-      class="vida"
-      src="${coracaoCheio}">
-
-    <img
-      class="vida"
-      src="${coracaoCheio}">
-
-  `;
-
-}
-
-function atualizarVidas(){
-
-  const coracoes =
-    document.querySelectorAll(
-      ".vida"
-    );
-
-  coracoes.forEach((c,i)=>{
-
-    if(i < vidas){
-
-      c.src = coracaoCheio;
-
-    }
-
-    else{
-
-      c.src = coracaoMorto;
-
-    }
-
-  });
+`;
 
 }
 
 function perderVida(){
 
-  vidas--;
+vidas--;
 
-  atualizarVidas();
+const coracoes =
+document.querySelectorAll(".vida");
 
-  if(vidas <= 0){
+coracoes.forEach((c,i)=>{
 
-    mostrarGameOver();
+if(i < vidas){
+c.src = coracaoCheio;
+}
 
-    vidas = 3;
+else{
+c.src = coracaoMorto;
+}
 
-    setTimeout(()=>{
+});
 
-      atualizarVidas();
+if(vidas <= 0){
 
-    },100);
+somDerrota.currentTime = 0;
+somDerrota.play();
 
-  }
+mostrarGameOver();
+
+vidas = 3;
+
+setTimeout(()=>{
+
+const coracoes =
+document.querySelectorAll(".vida");
+
+coracoes.forEach((c)=>{
+
+c.src = coracaoCheio;
+
+});
+
+},3000);
+
+}
 
 }
 
@@ -416,138 +393,109 @@ function perderVida(){
 
 function jogarJokenpo(escolha){
 
-  const opcoes = [
-    "Pedra",
-    "Papel",
-    "Tesoura"
-  ];
+const opcoes =
+["Pedra","Papel","Tesoura"];
 
-  const pc =
-    opcoes[
-      Math.floor(Math.random()*3)
-    ];
+const pc =
+opcoes[Math.floor(Math.random()*3)];
 
-  let resultado = "";
+if(
 
-  if(escolha === pc){
+(escolha==="Pedra" && pc==="Tesoura") ||
+(escolha==="Papel" && pc==="Pedra") ||
+(escolha==="Tesoura" && pc==="Papel")
 
-    resultado =
-      "⚖️ EMPATE";
+){
 
-  }
+document.getElementById("resultado")
+.innerHTML =
+`🎉 VOCÊ GANHOU<br>PC: ${pc}`;
 
-  else if(
+mostrarVictory();
 
-    (escolha === "Pedra" &&
-    pc === "Tesoura") ||
+}
 
-    (escolha === "Papel" &&
-    pc === "Pedra") ||
+else if(escolha === pc){
 
-    (escolha === "Tesoura" &&
-    pc === "Papel")
+document.getElementById("resultado")
+.innerHTML =
+`⚖️ EMPATE`;
 
-  ){
+}
 
-    resultado =
-      "🎉 VOCÊ GANHOU";
+else{
 
-    mostrarVictory();
+document.getElementById("resultado")
+.innerHTML =
+`❌ VOCÊ PERDEU<br>PC: ${pc}`;
 
-  }
+perderVida();
 
-  else{
-
-    resultado =
-      "❌ VOCÊ PERDEU";
-
-    perderVida();
-
-  }
-
-  document.getElementById(
-    "resultado"
-  ).innerHTML = `
-
-    ${resultado}
-
-    <br><br>
-
-    Você:
-    ${escolha}
-
-    <br>
-
-    PC:
-    ${pc}
-
-  `;
+}
 
 }
 
 /* =========================
-   DADO
+   DADOS
 ========================= */
 
 function jogarDado(){
 
-  const img =
-    document.getElementById(
-      "imgDado"
-    );
+const img =
+document.getElementById("imgDado");
 
-  img.classList.add(
-    "girando"
-  );
+img.classList.add("girando");
 
-  setTimeout(()=>{
+let contador = 0;
 
-    img.classList.remove(
-      "girando"
-    );
+const animacao =
+setInterval(()=>{
 
-    const numero =
-      Math.floor(
-        Math.random()*6
-      ) + 1;
+const aleatorio =
+Math.floor(Math.random()*6)+1;
 
-    if(numero >= 4){
+img.src =
+`./dado1jumper.png`;
 
-      document.getElementById(
-        "resultadoDados"
-      ).innerHTML = `
+contador++;
 
-        <span class="vitoria">
+if(contador >= 10){
 
-          🎉 Você tirou ${numero}
+clearInterval(animacao);
 
-        </span>
+img.classList.remove("girando");
 
-      `;
+const numero =
+Math.floor(Math.random()*6)+1;
 
-      mostrarVictory();
+img.src =
+`./dado1jumper.png`;
 
-    }
+if(numero >= 4){
 
-    else{
+document.getElementById(
+"resultadoDados"
+).innerHTML =
+`🎉 Tirou ${numero}`;
 
-      document.getElementById(
-        "resultadoDados"
-      ).innerHTML = `
+mostrarVictory();
 
-        <span class="derrota">
+}
 
-          ❌ Você tirou ${numero}
+else{
 
-        </span>
+document.getElementById(
+"resultadoDados"
+).innerHTML =
+`❌ Tirou ${numero}`;
 
-      `;
+perderVida();
 
-      perderVida();
+}
 
-    }
+}
 
-  },1000);
+},100);
 
 }
 
@@ -557,71 +505,78 @@ function jogarDado(){
 
 function jogarMoeda(escolha){
 
-  const moeda =
-    document.getElementById(
-      "moedaCentral"
-    );
+const moeda =
+document.getElementById(
+"moedaCentral"
+);
 
-  moeda.classList.add(
-    "girando-moeda"
-  );
+moeda.classList.add(
+"girando-moeda"
+);
 
-  setTimeout(()=>{
+let trocas = 0;
 
-    const resultado =
-      Math.random() < 0.5
-      ? "Cara"
-      : "Coroa";
+const animacao =
+setInterval(()=>{
 
-    moeda.src =
+moeda.src =
 
-      resultado === "Cara"
+trocas % 2 === 0
+? "./carajumper.png"
+: "./coroajumper.png";
 
-      ? "./carajumper.png"
+trocas++;
 
-      : "./coroajumper.png";
+if(trocas >= 10){
 
-    moeda.classList.remove(
-      "girando-moeda"
-    );
+clearInterval(animacao);
 
-    if(escolha === resultado){
+const resultado =
+Math.random() < 0.5
+? "Cara"
+: "Coroa";
 
-      document.getElementById(
-        "resultadoMoeda"
-      ).innerHTML = `
+moeda.src =
 
-        <span class="vitoria">
+resultado === "Cara"
+? "./carajumper.png"
+: "./coroajumper.png";
 
-          🎉 ACERTOU
+moeda.classList.remove(
+"girando-moeda"
+);
 
-        </span>
+if(escolha === resultado){
 
-      `;
+mostrarVictory();
 
-      mostrarVictory();
+document.getElementById(
+"resultadoMoeda"
+).innerHTML =
 
-    }
+`🎉 ACERTOU
+<br>
+RESULTADO: ${resultado}`;
 
-    else{
+}
 
-      document.getElementById(
-        "resultadoMoeda"
-      ).innerHTML = `
+else{
 
-        <span class="derrota">
+perderVida();
 
-          ❌ ERROU
+document.getElementById(
+"resultadoMoeda"
+).innerHTML =
 
-        </span>
+`❌ ERROU
+<br>
+RESULTADO: ${resultado}`;
 
-      `;
+}
 
-      perderVida();
+}
 
-    }
-
-  },1000);
+},100);
 
 }
 
@@ -631,25 +586,23 @@ function jogarMoeda(escolha){
 
 function alternarLuz(){
 
-  const tomada =
-    document.getElementById(
-      "tomada"
-    );
+luzLigada = !luzLigada;
 
-  const cenario =
-    document.getElementById(
-      "cenarioBg"
-    );
+document.getElementById(
+"tomada"
+).src =
 
-  luzLigada = !luzLigada;
+luzLigada
+? "./tomadaligada.png"
+: "./tomadadesligada.png";
 
-  tomada.src = luzLigada
-    ? "./tomadaligada.png"
-    : "./tomadadesligada.png";
+document.getElementById(
+"cenarioBg"
+).src =
 
-  cenario.src = luzLigada
-    ? "./quarto-claro.png"
-    : "./quartoescuro.png";
+luzLigada
+? "./quarto-claro.png"
+: "./quartoescuro.png";
 
 }
 
@@ -659,301 +612,280 @@ function alternarLuz(){
 
 function adicionarMoeda(valor){
 
-  totalMoedas += valor;
+totalMoedas += valor;
 
-  if(valor === 0.10){
+document.getElementById(
+"valorTotal"
+).innerHTML =
+"R$ " + totalMoedas.toFixed(2);
 
-    moedas10++;
+const moeda =
+document.createElement("img");
 
-  }
+moeda.className = "coin";
 
-  else if(valor === 0.25){
-
-    moedas25++;
-
-  }
-
-  else if(valor === 0.50){
-
-    moedas50++;
-
-  }
-
-  else if(valor === 1){
-
-    moedas1++;
-
-  }
-
-  atualizarTela();
-
-  salvarCofre();
-
-  criarMoedaAnimada(valor);
-
+if(valor === 0.10){
+moeda.src = "./10 Centavos.png";
 }
 
-function atualizarTela(){
-
-  document.getElementById(
-    "valorTotal"
-  ).textContent =
-    formatarValor(totalMoedas);
-
-  document.getElementById(
-    "m10"
-  ).textContent =
-    moedas10;
-
-  document.getElementById(
-    "m25"
-  ).textContent =
-    moedas25;
-
-  document.getElementById(
-    "m50"
-  ).textContent =
-    moedas50;
-
-  document.getElementById(
-    "m1"
-  ).textContent =
-    moedas1;
-
+else if(valor === 0.25){
+moeda.src = "./25 Centavos.png";
 }
 
-function formatarValor(valor){
+else if(valor === 0.50){
+moeda.src = "./50 Centavos.png";
+}
 
-  return valor.toLocaleString(
-    "pt-BR",
-    {
-      minimumFractionDigits:2,
-      maximumFractionDigits:2
-    }
-  );
+else{
+moeda.src = "./1 Real.png";
+}
+
+moeda.style.left =
+Math.random()*150 + "px";
+
+document.getElementById("coins")
+.appendChild(moeda);
+
+setTimeout(()=>{
+
+moeda.remove();
+
+},1500);
 
 }
 
 function sacarValor(){
 
-  const valor =
-    parseFloat(
-      prompt(
-        "Digite o valor do saque:"
-      )
-    );
+let valor =
+prompt("Digite o valor para sacar:");
 
-  if(isNaN(valor)){
+if(valor === null){
+return;
+}
 
-    return;
+valor = parseFloat(valor);
 
-  }
+if(isNaN(valor) || valor <= 0){
 
-  if(valor > totalMoedas){
+alert("Digite um valor válido!");
 
-    alert(
-      "Você não tem Saldo para o saque!!"
-    );
+return;
 
-    return;
+}
 
-  }
+if(valor > totalMoedas){
 
-  totalMoedas -= valor;
+alert(
+"Você não tem Saldo para o saque!!"
+);
 
-  atualizarTela();
+}
 
-  salvarCofre();
+else{
 
-  alert(
-    "💸 Saque realizado!"
-  );
+totalMoedas -= valor;
+
+document.getElementById(
+"valorTotal"
+).innerHTML =
+
+"R$ " + totalMoedas.toFixed(2);
+
+alert(
+`💸 Saque de R$ ${valor.toFixed(2)} realizado!`
+);
+
+}
 
 }
 
 function esvaziarCofre(){
 
-  totalMoedas = 0;
+totalMoedas = 0;
 
-  moedas10 = 0;
-  moedas25 = 0;
-  moedas50 = 0;
-  moedas1 = 0;
+document.getElementById(
+"valorTotal"
+).innerHTML = "R$ 0.00";
 
-  atualizarTela();
-
-  salvarCofre();
-
-  alert(
-    "🗑️ Cofre esvaziado!"
-  );
-
-}
-
-function salvarCofre(){
-
-  localStorage.setItem(
-    "totalMoedas",
-    totalMoedas
-  );
-
-  localStorage.setItem(
-    "moedas10",
-    moedas10
-  );
-
-  localStorage.setItem(
-    "moedas25",
-    moedas25
-  );
-
-  localStorage.setItem(
-    "moedas50",
-    moedas50
-  );
-
-  localStorage.setItem(
-    "moedas1",
-    moedas1
-  );
-
-}
-
-function carregarCofre(){
-
-  totalMoedas =
-    parseFloat(
-      localStorage.getItem(
-        "totalMoedas"
-      )
-    ) || 0;
-
-  moedas10 =
-    parseInt(
-      localStorage.getItem(
-        "moedas10"
-      )
-    ) || 0;
-
-  moedas25 =
-    parseInt(
-      localStorage.getItem(
-        "moedas25"
-      )
-    ) || 0;
-
-  moedas50 =
-    parseInt(
-      localStorage.getItem(
-        "moedas50"
-      )
-    ) || 0;
-
-  moedas1 =
-    parseInt(
-      localStorage.getItem(
-        "moedas1"
-      )
-    ) || 0;
-
-}
-
-function criarMoedaAnimada(valor){
-
-  const coin =
-    document.createElement("img");
-
-  if(valor === 0.10){
-
-    coin.src =
-      "./10 Centavos.png";
-
-  }
-
-  else if(valor === 0.25){
-
-    coin.src =
-      "./25 Centavos.png";
-
-  }
-
-  else if(valor === 0.50){
-
-    coin.src =
-      "./50 Centavos.png";
-
-  }
-
-  else{
-
-    coin.src =
-      "./1 Real.png";
-
-  }
-
-  coin.className = "coin";
-
-  coin.style.left =
-    Math.random()*180 + "px";
-
-  document.getElementById(
-    "coins"
-  ).appendChild(coin);
-
-  setTimeout(()=>{
-
-    coin.remove();
-
-  },1500);
+alert("🗑️ Cofre esvaziado!");
 
 }
 
 /* =========================
-   GAME OVER
+   POMODORO
+========================= */
+
+let tempo = 1500;
+
+let intervalo;
+
+function iniciarPomodoro(){
+
+clearInterval(intervalo);
+
+intervalo = setInterval(()=>{
+
+tempo--;
+
+let minutos =
+Math.floor(tempo/60);
+
+let segundos =
+tempo % 60;
+
+document.getElementById(
+"timerPomodoro"
+).innerHTML =
+
+`${String(minutos).padStart(2,"0")}:${String(segundos).padStart(2,"0")}`;
+
+if(tempo <= 0){
+
+clearInterval(intervalo);
+
+mostrarVictory();
+
+}
+
+},1000);
+
+}
+
+function pararPomodoro(){
+
+clearInterval(intervalo);
+
+}
+
+function resetarPomodoro(){
+
+clearInterval(intervalo);
+
+tempo = 1500;
+
+document.getElementById(
+"timerPomodoro"
+).innerHTML = "25:00";
+
+}
+
+/* =========================
+   TECLADO
+========================= */
+
+function tocarNota(nota){
+
+const audio =
+new Audio(`./${nota}.mp3`);
+
+audio.currentTime = 0;
+
+audio.play();
+
+const teclas =
+document.querySelectorAll(".tecla");
+
+teclas.forEach((tecla)=>{
+
+if(
+tecla.innerHTML
+.toLowerCase()
+.includes(nota)
+){
+
+tecla.style.background =
+"#00ffee";
+
+setTimeout(()=>{
+
+tecla.style.background =
+"white";
+
+},200);
+
+}
+
+});
+
+}
+
+/* =========================
+   TECLADO FÍSICO
+========================= */
+
+document.addEventListener("keydown",(event)=>{
+
+const tecla =
+event.key.toLowerCase();
+
+if(tecla === "a"){
+tocarNota("do");
+}
+
+else if(tecla === "s"){
+tocarNota("re");
+}
+
+else if(tecla === "d"){
+tocarNota("mi");
+}
+
+else if(tecla === "f"){
+tocarNota("fa");
+}
+
+else if(tecla === "g"){
+tocarNota("sol");
+}
+
+else if(tecla === "h"){
+tocarNota("la");
+}
+
+else if(tecla === "j"){
+tocarNota("si");
+}
+
+});
+
+/* =========================
+   TELAS
 ========================= */
 
 function mostrarGameOver(){
 
-  const tela =
-    document.getElementById(
-      "gameOverTela"
-    );
+const tela =
+document.getElementById(
+"gameOverTela"
+);
 
-  tela.classList.add(
-    "ativo"
-  );
+tela.classList.add("ativo");
 
-  setTimeout(()=>{
+setTimeout(()=>{
 
-    tela.classList.remove(
-      "ativo"
-    );
+tela.classList.remove("ativo");
 
-  },3000);
+},3000);
 
 }
 
-/* =========================
-   VICTORY
-========================= */
-
 function mostrarVictory(){
 
-  const tela =
-    document.getElementById(
-      "victoryTela"
-    );
+somVitoria.currentTime = 0;
 
-  tela.classList.add(
-    "ativo"
-  );
+somVitoria.play();
 
-  setTimeout(()=>{
+const tela =
+document.getElementById(
+"victoryTela"
+);
 
-    tela.classList.remove(
-      "ativo"
-    );
+tela.classList.add("ativo");
 
-  },2000);
+setTimeout(()=>{
+
+tela.classList.remove("ativo");
+
+},2000);
 
 }
