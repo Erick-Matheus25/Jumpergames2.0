@@ -1,127 +1,449 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
+
 <head>
+
 
   <meta charset="UTF-8">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
 
   <title>JumperGames 2.0</title>
 
-  <link rel="stylesheet" href="./css/style.css">
+
+  <link
+    rel="stylesheet"
+    href="./css/style.css">
+
 
 </head>
 
+
 <body>
+
 
   <!-- FUNDO -->
 
+
   <div class="bg-wrap">
+
 
     <img
       src="./fundojumper.png"
       class="bg-img">
 
+
   </div>
+
 
   <div class="grid-bg"></div>
 
+
   <!-- PARTICULAS -->
+
 
   <div class="particles">
 
+
     <span></span>
     <span></span>
     <span></span>
     <span></span>
     <span></span>
+
 
   </div>
 
+
+  <!-- CONQUISTAS -->
+
+
+  <div id="painelConquistas">
+
+
+    <h2>
+      🏆 CONQUISTAS
+    </h2>
+
+
+    <div id="listaConquistas">
+
+
+    </div>
+
+
+    <button
+      class="hud-btn fechar-conquistas"
+      onclick="fecharConquistas()">
+
+
+      FECHAR
+
+
+    </button>
+
+
+  </div>
+
+
+  <!-- CONTEUDO -->
+
+
   <div class="content">
+
+
+    <!-- TITULO -->
+
 
     <h1 class="titulo">
       JUMPERGAMES 2.0
     </h1>
 
+
     <div class="top-title">
+
 
       SELECT YOUR GAME
 
+
     </div>
+
+
+    <!-- HUD -->
+
+
+    <div class="hud">
+
+
+      <div class="player-box">
+
+
+        <div id="nivelTexto">
+
+
+          LV 1
+
+
+        </div>
+
+
+        <div id="xpTexto">
+
+
+          XP: 0/100
+
+
+        </div>
+
+
+        <div class="xp-container">
+
+
+          <div id="xpBar"></div>
+
+
+        </div>
+
+
+      </div>
+
+
+      <div class="hud-right">
+
+
+        <button
+          class="hud-btn"
+          onclick="abrirConquistas()">
+
+
+          🏆 CONQUISTAS
+
+
+        </button>
+
+
+      </div>
+
+
+    </div>
+
 
     <!-- MENU -->
 
+
     <div class="games">
 
-      <div class="game-card" onclick="abrirJogo('jokenpo')">
-        <div class="game-title-box">✊ JOKENPÔ</div>
-        <button class="play-btn">PLAY GAME</button>
+
+      <!-- JOKENPO -->
+
+
+      <div
+        class="game-card"
+        onclick="abrirJogo('jokenpo')">
+
+
+        <div class="game-title-box">
+
+
+          ✊ JOKENPÔ
+
+
+        </div>
+
+
+        <button class="play-btn">
+
+
+          PLAY GAME
+
+
+        </button>
+
+
       </div>
 
-      <div class="game-card" onclick="abrirJogo('dados')">
-        <div class="game-title-box">🎲 DADOS</div>
-        <button class="play-btn">PLAY GAME</button>
+
+      <!-- DADOS -->
+
+
+      <div
+        class="game-card"
+        onclick="abrirJogo('dados')">
+
+
+        <div class="game-title-box">
+
+
+          🎲 DADOS
+
+
+        </div>
+
+
+        <button class="play-btn">
+
+
+          PLAY GAME
+
+
+        </button>
+
+
       </div>
 
-      <div class="game-card" onclick="abrirJogo('moeda')">
-        <div class="game-title-box">🪙 MOEDA</div>
-        <button class="play-btn">PLAY GAME</button>
+
+      <!-- MOEDA -->
+
+
+      <div
+        class="game-card"
+        onclick="abrirJogo('moeda')">
+
+
+        <div class="game-title-box">
+
+
+          🪙 MOEDA
+
+
+        </div>
+
+
+        <button class="play-btn">
+
+
+          PLAY GAME
+
+
+        </button>
+
+
       </div>
 
-      <div class="game-card" onclick="abrirJogo('interruptor')">
-        <div class="game-title-box">💡 INTERRUPTOR</div>
-        <button class="play-btn">PLAY GAME</button>
+
+      <!-- INTERRUPTOR -->
+
+
+      <div
+        class="game-card"
+        onclick="abrirJogo('interruptor')">
+
+
+        <div class="game-title-box">
+
+
+          💡 INTERRUPTOR
+
+
+        </div>
+
+
+        <button class="play-btn">
+
+
+          PLAY GAME
+
+
+        </button>
+
+
       </div>
 
-      <div class="game-card" onclick="abrirJogo('cofre')">
-        <div class="game-title-box">🏦 COFRE</div>
-        <button class="play-btn">PLAY GAME</button>
+
+      <!-- COFRE -->
+
+
+      <div
+        class="game-card"
+        onclick="abrirJogo('cofre')">
+
+
+        <div class="game-title-box">
+
+
+          🏦 COFRE
+
+
+        </div>
+
+
+        <button class="play-btn">
+
+
+          PLAY GAME
+
+
+        </button>
+
+
       </div>
 
-      <div class="game-card" onclick="abrirJogo('pomodoro')">
-        <div class="game-title-box">🍅 POMODORO</div>
-        <button class="play-btn">PLAY GAME</button>
+
+      <!-- POMODORO -->
+
+
+      <div
+        class="game-card"
+        onclick="abrirJogo('pomodoro')">
+
+
+        <div class="game-title-box">
+
+
+          🍅 POMODORO
+
+
+        </div>
+
+
+        <button class="play-btn">
+
+
+          PLAY GAME
+
+
+        </button>
+
+
       </div>
 
-      <div class="game-card" onclick="abrirJogo('teclado')">
-        <div class="game-title-box">🎹 TECLADO</div>
-        <button class="play-btn">PLAY GAME</button>
+
+      <!-- TECLADO -->
+
+
+      <div
+        class="game-card"
+        onclick="abrirJogo('teclado')">
+
+
+        <div class="game-title-box">
+
+
+          🎹 TECLADO
+
+
+        </div>
+
+
+        <button class="play-btn">
+
+
+          PLAY GAME
+
+
+        </button>
+
+
       </div>
+
 
     </div>
 
+
     <!-- AREA DOS JOGOS -->
+
 
     <div id="areaJogo"></div>
 
+
   </div>
+
 
   <!-- GAME OVER -->
 
+
   <div id="gameOverTela">
+
 
     <img src="./gameover.png">
 
+
   </div>
+
 
   <!-- VICTORY -->
 
+
   <div id="victoryTela">
+
 
     <img src="./victory.png">
 
+
   </div>
 
-  <!-- SONS -->
 
-  <audio id="somVitoria" src="./Somdavitoria.mp3"></audio>
+  <!-- AUDIOS -->
 
-  <audio id="somDerrota" src="./Somdaderrota.mp3"></audio>
+
+  <audio
+    id="somVitoria"
+    src="./Somdavitoria.mp3">
+
+
+  </audio>
+
+
+  <audio
+    id="somDerrota"
+    src="./Somdaderrota.mp3">
+
+
+  </audio>
+
 
   <!-- SCRIPT -->
 
+
   <script src="./js/script.js"></script>
 
+
 </body>
+
+
 </html>
