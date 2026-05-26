@@ -187,7 +187,7 @@ area.innerHTML = `
 <div class="cofre-box">
 
 <img
-src="./caldeirao.png"
+src="./Caldeirao.png"
 class="caldeirao">
 
 <div id="coins"></div>
