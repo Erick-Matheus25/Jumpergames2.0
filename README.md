@@ -134,4 +134,4 @@ Multiplayer local
 1. Clone o repositório:
 
 ```bash
-git clone https://github.com/Erick-Matheus25/TrabalhoJumperGames2.0
+https://erick-matheus25.github.io/Jumpergames2.0/
