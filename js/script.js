@@ -889,3 +889,244 @@ tela.classList.remove("ativo");
 },2000);
 
 }
+
+/* =========================
+   FUNCOES POMODORO
+========================= */
+
+function atualizarPomodoro(){
+
+  const minutos =
+    Math.floor(tempoAtual / 60);
+
+  const segundos =
+    tempoAtual % 60;
+
+  const timer =
+    document.getElementById(
+      "timerPomodoro"
+    );
+
+  if(timer){
+
+    timer.innerHTML =
+      `${String(minutos).padStart(2,'0')}:${String(segundos).padStart(2,'0')}`;
+
+  }
+
+  atualizarBarraPomodoro();
+
+}
+
+function atualizarBarraPomodoro(){
+
+  const barra =
+    document.getElementById(
+      "barraPomodoro"
+    );
+
+  if(!barra) return;
+
+  const total =
+    modoPomodoro === "Estudo"
+    ? tempoEstudo
+    : tempoPausa;
+
+  const porcentagem =
+    (tempoAtual / total) * 100;
+
+  barra.style.width =
+    `${porcentagem}%`;
+
+}
+
+function iniciarPomodoro(){
+
+  clearInterval(
+    intervaloPomodoro
+  );
+
+  tempoEstudo =
+    parseInt(
+      document.getElementById(
+        "tempoEstudoInput"
+      ).value
+    ) * 60;
+
+  tempoPausa =
+    parseInt(
+      document.getElementById(
+        "tempoPausaInput"
+      ).value
+    ) * 60;
+
+  intervaloPomodoro =
+    setInterval(()=>{
+
+      if(tempoAtual > 0){
+
+        tempoAtual--;
+
+        atualizarPomodoro();
+
+      }
+
+      else{
+
+        tocarSomPomodoro();
+
+        alternarPomodoro();
+
+      }
+
+    },1000);
+
+}
+
+function alternarPomodoro(){
+
+  const modo =
+    document.getElementById(
+      "modoPomodoro"
+    );
+
+  if(modoPomodoro === "Estudo"){
+
+    ciclosPomodoro++;
+
+    document.getElementById(
+      "ciclosPomodoro"
+    ).innerHTML =
+
+      `🔥 Ciclos completos: ${ciclosPomodoro}`;
+
+    modoPomodoro = "Pausa";
+
+    tempoAtual = tempoPausa;
+
+    modo.innerHTML =
+      "☕ Modo Pausa";
+
+  }
+
+  else{
+
+    modoPomodoro = "Estudo";
+
+    tempoAtual = tempoEstudo;
+
+    modo.innerHTML =
+      "📚 Modo Estudo";
+
+  }
+
+  salvarPomodoro();
+
+  atualizarPomodoro();
+
+}
+
+function pausarPomodoro(){
+
+  clearInterval(
+    intervaloPomodoro
+  );
+
+}
+
+function resetarPomodoro(){
+
+  clearInterval(
+    intervaloPomodoro
+  );
+
+  modoPomodoro = "Estudo";
+
+  tempoEstudo =
+    parseInt(
+      document.getElementById(
+        "tempoEstudoInput"
+      ).value
+    ) * 60;
+
+  tempoAtual = tempoEstudo;
+
+  document.getElementById(
+    "modoPomodoro"
+  ).innerHTML =
+
+    "📚 Modo Estudo";
+
+  atualizarPomodoro();
+
+}
+
+function tocarSomPomodoro(){
+
+  const timer =
+    document.getElementById(
+      "timerPomodoro"
+    );
+
+  if(timer){
+
+    timer.classList.add(
+      "alerta-final"
+    );
+
+    setTimeout(()=>{
+
+      timer.classList.remove(
+        "alerta-final"
+      );
+
+    },3000);
+
+  }
+
+  const audio =
+    new Audio(
+      "https://actions.google.com/sounds/v1/alarms/alarm_clock.ogg"
+    );
+
+  audio.play();
+
+}
+
+function salvarPomodoro(){
+
+  const dados = {
+
+    tempoEstudo,
+
+    tempoPausa,
+
+    ciclosPomodoro
+
+  };
+
+  localStorage.setItem(
+    "pomodoro",
+    JSON.stringify(dados)
+  );
+
+}
+
+function carregarPomodoro(){
+
+  const dados =
+    JSON.parse(
+      localStorage.getItem(
+        "pomodoro"
+      )
+    );
+
+  if(!dados) return;
+
+  tempoEstudo = dados.tempoEstudo;
+
+  tempoPausa = dados.tempoPausa;
+
+  ciclosPomodoro = dados.ciclosPomodoro;
+
+}
