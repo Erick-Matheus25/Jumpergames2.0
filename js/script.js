@@ -715,60 +715,47 @@ alert("🗑️ Cofre esvaziado!");
    POMODORO
 ========================= */
 
-let tempo = 1500;
-
-let intervalo;
+let tempoPomodoro = 1500;
+let intervaloPomodoro = null;
 
 function iniciarPomodoro(){
 
-clearInterval(intervalo);
+  clearInterval(intervaloPomodoro);
 
-intervalo = setInterval(()=>{
+  intervaloPomodoro = setInterval(()=>{
 
-tempo--;
+    tempoPomodoro--;
 
-let minutos =
-Math.floor(tempo/60);
+    const el = document.getElementById("timerPomodoro");
 
-let segundos =
-tempo % 60;
+    if(el){
+      const min = Math.floor(tempoPomodoro / 60);
+      const seg = tempoPomodoro % 60;
 
-document.getElementById(
-"timerPomodoro"
-).innerHTML =
+      el.innerHTML =
+        String(min).padStart(2,"0") + ":" +
+        String(seg).padStart(2,"0");
+    }
 
-`${String(minutos).padStart(2,"0")}:${String(segundos).padStart(2,"0")}`;
+    if(tempoPomodoro <= 0){
+      clearInterval(intervaloPomodoro);
+      mostrarVictory();
+    }
 
-if(tempo <= 0){
-
-clearInterval(intervalo);
-
-mostrarVictory();
-
-}
-
-},1000);
-
+  },1000);
 }
 
 function pararPomodoro(){
-
-clearInterval(intervalo);
-
+  clearInterval(intervaloPomodoro);
 }
 
 function resetarPomodoro(){
+  clearInterval(intervaloPomodoro);
+  tempoPomodoro = 1500;
 
-clearInterval(intervalo);
-
-tempo = 1500;
-
-document.getElementById(
-"timerPomodoro"
-).innerHTML = "25:00";
-
+  const el = document.getElementById("timerPomodoro");
+  if(el) el.innerHTML = "25:00";
 }
-
 /* =========================
    TECLADO
 ========================= */
@@ -894,239 +881,3 @@ tela.classList.remove("ativo");
    FUNCOES POMODORO
 ========================= */
 
-function atualizarPomodoro(){
-
-  const minutos =
-    Math.floor(tempoAtual / 60);
-
-  const segundos =
-    tempoAtual % 60;
-
-  const timer =
-    document.getElementById(
-      "timerPomodoro"
-    );
-
-  if(timer){
-
-    timer.innerHTML =
-      `${String(minutos).padStart(2,'0')}:${String(segundos).padStart(2,'0')}`;
-
-  }
-
-  atualizarBarraPomodoro();
-
-}
-
-function atualizarBarraPomodoro(){
-
-  const barra =
-    document.getElementById(
-      "barraPomodoro"
-    );
-
-  if(!barra) return;
-
-  const total =
-    modoPomodoro === "Estudo"
-    ? tempoEstudo
-    : tempoPausa;
-
-  const porcentagem =
-    (tempoAtual / total) * 100;
-
-  barra.style.width =
-    `${porcentagem}%`;
-
-}
-
-function iniciarPomodoro(){
-
-  clearInterval(
-    intervaloPomodoro
-  );
-
-  tempoEstudo =
-    parseInt(
-      document.getElementById(
-        "tempoEstudoInput"
-      ).value
-    ) * 60;
-
-  tempoPausa =
-    parseInt(
-      document.getElementById(
-        "tempoPausaInput"
-      ).value
-    ) * 60;
-
-  intervaloPomodoro =
-    setInterval(()=>{
-
-      if(tempoAtual > 0){
-
-        tempoAtual--;
-
-        atualizarPomodoro();
-
-      }
-
-      else{
-
-        tocarSomPomodoro();
-
-        alternarPomodoro();
-
-      }
-
-    },1000);
-
-}
-
-function alternarPomodoro(){
-
-  const modo =
-    document.getElementById(
-      "modoPomodoro"
-    );
-
-  if(modoPomodoro === "Estudo"){
-
-    ciclosPomodoro++;
-
-    document.getElementById(
-      "ciclosPomodoro"
-    ).innerHTML =
-
-      `🔥 Ciclos completos: ${ciclosPomodoro}`;
-
-    modoPomodoro = "Pausa";
-
-    tempoAtual = tempoPausa;
-
-    modo.innerHTML =
-      "☕ Modo Pausa";
-
-  }
-
-  else{
-
-    modoPomodoro = "Estudo";
-
-    tempoAtual = tempoEstudo;
-
-    modo.innerHTML =
-      "📚 Modo Estudo";
-
-  }
-
-  salvarPomodoro();
-
-  atualizarPomodoro();
-
-}
-
-function pausarPomodoro(){
-
-  clearInterval(
-    intervaloPomodoro
-  );
-
-}
-
-function resetarPomodoro(){
-
-  clearInterval(
-    intervaloPomodoro
-  );
-
-  modoPomodoro = "Estudo";
-
-  tempoEstudo =
-    parseInt(
-      document.getElementById(
-        "tempoEstudoInput"
-      ).value
-    ) * 60;
-
-  tempoAtual = tempoEstudo;
-
-  document.getElementById(
-    "modoPomodoro"
-  ).innerHTML =
-
-    "📚 Modo Estudo";
-
-  atualizarPomodoro();
-
-}
-
-function tocarSomPomodoro(){
-
-  const timer =
-    document.getElementById(
-      "timerPomodoro"
-    );
-
-  if(timer){
-
-    timer.classList.add(
-      "alerta-final"
-    );
-
-    setTimeout(()=>{
-
-      timer.classList.remove(
-        "alerta-final"
-      );
-
-    },3000);
-
-  }
-
-  const audio =
-    new Audio(
-      "https://actions.google.com/sounds/v1/alarms/alarm_clock.ogg"
-    );
-
-  audio.play();
-
-}
-
-function salvarPomodoro(){
-
-  const dados = {
-
-    tempoEstudo,
-
-    tempoPausa,
-
-    ciclosPomodoro
-
-  };
-
-  localStorage.setItem(
-    "pomodoro",
-    JSON.stringify(dados)
-  );
-
-}
-
-function carregarPomodoro(){
-
-  const dados =
-    JSON.parse(
-      localStorage.getItem(
-        "pomodoro"
-      )
-    );
-
-  if(!dados) return;
-
-  tempoEstudo = dados.tempoEstudo;
-
-  tempoPausa = dados.tempoPausa;
-
-  ciclosPomodoro = dados.ciclosPomodoro;
-
-}
